@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Clean Relay</title>
+  <meta name="description" content="Clean Relay is a residential cleaning marketplace connecting DFW homeowners with vetted, independent cleaning professionals. Built in Mansfield, TX." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,900;1,600&family=Montserrat:wght@400;500;600&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:       #0f766e;
+      --teal-dark:  #0a5c56;
+      --teal-light: #e0f2f1;
+      --white:      #ffffff;
+      --gray-light: #e5e7eb;
+      --gray-mid:   #9ca3af;
+      --gray-dark:  #374151;
+      --ink:        #1a1a1a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5%;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.6rem; text-decoration: none;
+    }
+    .logo-mark {
+      width: 36px; height: 36px;
+      background: var(--teal); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 20px; height: 20px; fill: white; }
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem; color: var(--teal); letter-spacing: -0.01em;
+    }
+    .logo-text span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-mid);
+    }
+    .nav-cta {
+      background: var(--teal); color: white; text-decoration: none;
+      padding: 0.6rem 1.4rem; border-radius: 6px;
+      font-size: 0.875rem; font-weight: 600; transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal-dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 5% 6rem;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      bottom: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(15,118,110,0.18) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(15,118,110,0.08) 0%, transparent 65%);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      max-width: 760px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(15,118,110,0.2);
+      color: #5eead4;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+      border: 1px solid rgba(94,234,212,0.2);
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1;
+      color: white;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em { font-style: italic; color: #5eead4; }
+
+    .hero-lead {
+      font-size: 1.1rem;
+      color: #9ca3af;
+      line-height: 1.75;
+      font-weight: 300;
+      max-width: 580px;
+    }
+
+    /* MISSION SECTION */
+    .mission {
+      padding: 7rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .mission-text .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .mission-text h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-text p {
+      font-size: 0.975rem;
+      color: var(--gray-dark);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+
+    .mission-visual {
+      background: linear-gradient(135deg, var(--teal-light) 0%, #f0faf9 100%);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      border: 1px solid rgba(15,118,110,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mission-visual::before {
+      content: '"';
+      font-family: 'DM Serif Display', serif;
+      font-size: 12rem;
+      color: rgba(15,118,110,0.08);
+      position: absolute;
+      top: -2rem;
+      left: 1rem;
+      line-height: 1;
+    }
+
+    .mission-visual blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--teal-dark);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 1.5rem;
+    }
+
+    .mission-visual cite {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--gray-mid);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* HOW IT WORKS — MODEL */
+    .model-section {
+      background: #f9fafb;
+      padding: 6rem 5%;
+      border-top: 1px solid var(--gray-light);
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-sub {
+      font-size: 0.975rem;
+      color: var(--gray-dark);
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 540px;
+      margin-bottom: 3.5rem;
+    }
+
+    .model-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .model-card {
+      background: white;
+      border-radius: 14px;
+      padding: 2rem;
+      border: 1px solid var(--gray-light);
+      transition: all 0.25s;
+    }
+
+    .model-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 8px 32px rgba(15,118,110,0.08);
+      transform: translateY(-2px);
+    }
+
+    .model-icon {
+      width: 56px; height: 56px;
+      background: rgba(15,118,110,0.1);
+      border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      flex-shrink: 0;
+    }
+    .model-icon i {
+      width: 26px; height: 26px;
+      stroke: var(--teal);
+      color: var(--teal);
+    }
+
+    .model-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+      color: var(--ink);
+    }
+
+    .model-card p {
+      font-size: 0.85rem;
+      color: var(--gray-dark);
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* VALUES */
+    .values-section {
+      padding: 6rem 5%;
+      background: var(--ink);
+    }
+
+    .values-section .section-label { color: #5eead4; }
+    .values-section .section-title { color: white; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .value-item {
+      border-left: 2px solid rgba(94,234,212,0.3);
+      padding-left: 1.5rem;
+    }
+
+    .value-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #5eead4;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-item p {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      line-height: 1.65;
+      font-weight: 300;
+    }
+
+    /* LOCATION */
+    .location-section {
+      padding: 6rem 5%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .location-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .location-section p {
+      font-size: 0.975rem;
+      color: var(--gray-dark);
+      line-height: 1.8;
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .tag {
+      background: var(--teal-light);
+      color: var(--teal-dark);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid rgba(15,118,110,0.15);
+    }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, var(--teal-light), #f0faf9);
+      border-radius: 20px;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(15,118,110,0.12);
+      gap: 0.75rem;
+    }
+
+    .map-placeholder .map-icon {
+      width: 64px; height: 64px;
+      background: rgba(15,118,110,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .map-icon i {
+      width: 30px; height: 30px;
+      stroke: var(--teal);
+      color: var(--teal);
+    }
+
+    .map-placeholder p {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--teal);
+      margin: 0;
+    }
+
+    .map-placeholder small {
+      font-size: 0.8rem;
+      color: var(--gray-mid);
+    }
+
+    /* CTA */
+    .cta-section {
+      background: var(--teal);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: white;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .cta-section p {
+      font-size: 0.975rem;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2rem;
+      font-weight: 300;
+    }
+
+    .cta-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--teal);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-white:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .btn-outline-white {
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-outline-white:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      color: #9ca3af;
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer .logo-text { color: white; }
+    footer .logo-text span { color: #9ca3af; }
+    footer p { font-size: 0.8rem; }
+    footer a { color: #5eead4; text-decoration: none; font-size: 0.8rem; }
+    footer a:hover { text-decoration: underline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .mission { grid-template-columns: 1fr; gap: 3rem; }
+      .location-section { grid-template-columns: 1fr; gap: 3rem; }
+    }
+    @media (max-width: 600px) {
+      .model-grid { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .d1 { animation-delay: 0.1s; }
+    .d2 { animation-delay: 0.2s; }
+    .d3 { animation-delay: 0.3s; }
+  
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark {
+      width: 36px; height: 36px;
+      background: var(--teal);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 20px; height: 20px; }
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.02em;
+    }
+    .logo-text span { color: var(--teal); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      margin-left: auto;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--gray-mid); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta {
+      background: var(--teal);
+      color: var(--white);
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.875rem; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-links .nav-cta:hover { background: var(--teal-light); color: var(--white); transform: translateY(-1px); }
+
+    .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: auto; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 56px 48px 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p {
+      font-size: 0.875rem; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.4); margin-top: 16px; max-width: 280px;
+    }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .footer-col a {
+      display: block; font-size: 0.875rem; font-weight: 400;
+      color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--teal-light); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding-top: 28px;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom a { font-size: 0.78rem; color: var(--teal-light); text-decoration: none; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .markets-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 40px 24px 24px; }
+      section { padding: 72px 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-outline { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Clean Relay Logo" style="height:42px;width:auto;object-fit:contain;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how">How It Works</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#markets">Who We Serve</a></li>
+    <li><a href="contractors.html">Join as Cleaner</a></li>
+    <li><a href="index.html#waitlist" class="nav-cta">Get Early Access</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" style="display:none; position:fixed; top:68px; left:0; right:0; z-index:99; background:white; padding:24px; border-bottom:1px solid var(--gray);">
+  <a href="index.html#how" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">How It Works</a>
+  <a href="index.html#services" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">Services</a>
+  <a href="index.html#markets" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">Who We Serve</a>
+  <a href="contractors.html" style="display:block; padding:12px 0; font-weight:500; color:var(--teal); text-decoration:none; border-bottom:1px solid var(--gray);">Join as Cleaner</a>
+  <a href="index.html#waitlist" onclick="toggleMenu()" style="display:block; margin-top:16px; background:var(--teal); color:white; text-align:center; padding:13px; border-radius:10px; font-weight:500; text-decoration:none;">Get Early Access</a>
+</div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge fade-up">About Clean Relay</div>
+      <h1 class="fade-up d1">
+        Cleaning, <em>simplified</em><br/>for DFW.
+      </h1>
+      <p class="hero-lead fade-up d2">
+        Clean Relay is a residential cleaning marketplace built right here in the DFW metro. We connect homeowners, property managers, and businesses with vetted, independent cleaning professionals so everyone gets what they need without the hassle.
+      </p>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission">
+    <div class="mission-text">
+      <div class="section-label">Our Story</div>
+      <h2>Built to solve a real problem.</h2>
+      <p>
+        Finding a reliable cleaner in DFW shouldn't be this hard. Between inconsistent no-shows, unclear pricing, and platforms that feel like they were built for someone else's city the whole experience was broken.
+      </p>
+      <p>
+        Clean Relay was built to fix that. A marketplace model that works for both sides: homeowners and businesses get a seamless, transparent booking experience, and cleaning professionals get consistent work, fair pay, and the flexibility to run their own schedule.
+      </p>
+      <p>
+        We're not a cleaning company. We're the platform that makes the whole thing work and we're built specifically for DFW.
+      </p>
+    </div>
+
+    <div class="mission-visual">
+      <blockquote>
+        "The market needed a platform that treated cleaning professionals like the skilled tradespeople they are and treated clients like they deserved a real experience."
+      </blockquote>
+      <cite>— Jennifer, Founder & CEO</cite>
+    </div>
+  </section>
+
+  <!-- MODEL -->
+  <section class="model-section">
+    <div class="section-label">How We're Built</div>
+    <h2 class="section-title">A marketplace, not a cleaning company.</h2>
+    <p class="section-sub">Understanding our model matters especially if you're a business partner or a pro looking to join.</p>
+
+    <div class="model-grid">
+      <div class="model-card">
+        <div class="model-icon"><i data-lucide="smartphone"></i></div>
+        <h3>Client Books Online</h3>
+        <p>Clients book directly through our platform clear pricing, no calls, no guesswork. Payment is collected securely at checkout.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-icon"><i data-lucide="link-2"></i></div>
+        <h3>We Match the Right Pro</h3>
+        <p>Clean Relay routes the booking to a vetted independent cleaning professional in the right area with the right availability.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-icon"><i data-lucide="home"></i></div>
+        <h3>Pro Delivers the Clean</h3>
+        <p>The assigned pro shows up, does the work, and handles it from start to finish. They bring their own supplies and equipment.</p>
+      </div>
+      <div class="model-card">
+        <div class="model-icon"><i data-lucide="banknote"></i></div>
+        <h3>Everyone Gets Paid</h3>
+        <p>Pros receive their payout weekly. Clean Relay retains a platform fee. Transparent, simple, and fair for everyone involved.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values-section">
+    <div class="section-label">What We Stand For</div>
+    <h2 class="section-title" style="color:white; margin-bottom:0.5rem;">The principles we<br/>build everything on.</h2>
+
+    <div class="values-grid">
+      <div class="value-item">
+        <h3>Transparency first.</h3>
+        <p>No hidden fees. No bait-and-switch pricing. What you see when you book is what you pay. Every time.</p>
+      </div>
+      <div class="value-item">
+        <h3>Pros deserve better.</h3>
+        <p>We pay at the top of the market because pros who feel valued show up, do great work, and stick around. That's good for everyone.</p>
+      </div>
+      <div class="value-item">
+        <h3>Reliability over scale.</h3>
+        <p>We'd rather be the most reliable platform in DFW than the biggest one in three cities. Quality first, growth second.</p>
+      </div>
+      <div class="value-item">
+        <h3>Simple beats complicated.</h3>
+        <p>Booking a clean should take 60 seconds. Running your portfolio of properties shouldn't require a phone call. We build for simplicity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location-section">
+    <div>
+      <div class="section-label">Where We Operate</div>
+      <h2>Built in DFW.<br/>Built for DFW.</h2>
+      <p>
+        Clean Relay is headquartered in Plano, TX,  not Austin, not some coastal city that shipped a product to our market. We're here, we know the neighborhoods, and we're building specifically for this metro.
+      </p>
+      <p>
+        We currently serve Mansfield, Arlington, Midlothian, and surrounding DFW cities, with high-demand coverage extending into Plano, Frisco, Southlake, and McKinney.
+      </p>
+      <div class="tag-cloud">
+        <span class="tag">Mansfield</span>
+        <span class="tag">Arlington</span>
+        <span class="tag">Midlothian</span>
+        <span class="tag">Plano</span>
+        <span class="tag">Frisco</span>
+        <span class="tag">Southlake</span>
+        <span class="tag">McKinney</span>
+        <span class="tag">Fort Worth</span>
+        <span class="tag">Irving</span>
+        <span class="tag">Grand Prairie</span>
+        <span class="tag">+ More DFW</span>
+      </div>
+    </div>
+
+    <div class="map-placeholder">
+      <div class="map-icon"><i data-lucide="map-pin"></i></div>
+      <p>Dallas-Fort Worth Metro</p>
+      <small>Headquartered in Mansfield, TX</small>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <h2>Ready to get started?</h2>
+    <p>Book your first clean in 60 seconds or reach out if you're a business looking to partner.</p>
+    <div class="cta-btns">
+      <a href="https://book.trycleanrelay.com" class="btn-white">Book a Clean →</a>
+      <a href="/business" class="btn-outline-white">Business Partnerships</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <img src="logo.png" alt="Clean Relay Logo" style="height:42px;width:auto;object-fit:contain;" />
+        </a>
+        <p>Professional on-demand cleaning for DFW homeowners and property managers. Book online. Come home to clean.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html#how">How It Works</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#markets">Who We Serve</a>
+        <a href="index.html#why">Why Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Work With Us</h4>
+        <a href="contractors.html">Become a Cleaner</a>
+        <a href="mailto:hello@trycleanrelay.com">Business Inquiries</a>
+        <a href="mailto:hello@trycleanrelay.com">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Clean Relay LLC · Dallas–Fort Worth, TX · trycleanrelay.com</p>
+      <a href="mailto:contact@trycleanrelay.com">contact@trycleanrelay.com</a>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    function toggleMenu() {
+      const m = document.getElementById('mobileMenu');
+      m.style.display = m.style.display === 'none' ? 'block' : 'none';
+    }
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
+    });
+  </script>
+
+  <script src="https://unpkg.com/lucide@latest" onload="lucide.createIcons()"></script>
+</body>
+</html>

@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean Relay for Business | DFW Commercial Cleaning Partnerships</title>
+  <meta name="description" content="Reliable, recurring cleaning services for property managers, short-term rental operators, real estate brokers, and corporate relocation firms in the DFW area." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,900;1,600&family=Montserrat:wght@400;500;600&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:       #0f766e;
+      --teal-dark:  #0a5c56;
+      --teal-light: #e0f2f1;
+      --white:      #ffffff;
+      --gray-light: #e5e7eb;
+      --gray-mid:   #9ca3af;
+      --gray-dark:  #374151;
+      --ink:        #1a1a1a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5%;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--gray-light);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--teal);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-mark svg { width: 20px; height: 20px; fill: white; }
+
+    .logo-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.25rem;
+      color: var(--teal);
+      letter-spacing: -0.01em;
+    }
+
+    .logo-text span {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-mid);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: var(--gray-dark);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--teal); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      padding: 0.6rem 1.4rem;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--teal-dark); }
+
+    /* ─── HERO ────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 0 5%;
+      padding-top: 80px;
+      gap: 4rem;
+      background: linear-gradient(135deg, #f0faf9 0%, #ffffff 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(15,118,110,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--teal-light);
+      color: var(--teal);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 4vw, 3.6rem);
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--gray-dark);
+      max-width: 500px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: white;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(15,118,110,0.25);
+    }
+
+    .btn-ghost {
+      color: var(--teal);
+      padding: 0.85rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1.5px solid var(--teal);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover {
+      background: var(--teal-light);
+    }
+
+    /* Hero visual card stack */
+    .hero-visual {
+      position: relative;
+      height: 460px;
+    }
+
+    .stat-card {
+      position: absolute;
+      background: white;
+      border-radius: 14px;
+      padding: 1.4rem 1.8rem;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+      border: 1px solid var(--gray-light);
+    }
+
+    .stat-card .num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      color: var(--teal);
+      line-height: 1;
+    }
+
+    .stat-card .label {
+      font-size: 0.8rem;
+      color: var(--gray-mid);
+      font-weight: 500;
+      margin-top: 0.25rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .card-1 { top: 40px; left: 20px; animation: float 6s ease-in-out infinite; }
+    .card-2 { top: 160px; right: 10px; animation: float 6s ease-in-out infinite 1s; }
+    .card-3 { bottom: 60px; left: 60px; animation: float 6s ease-in-out infinite 2s; }
+
+    .check-pill {
+      position: absolute;
+      top: 280px;
+      right: 30px;
+      background: var(--teal);
+      color: white;
+      border-radius: 100px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      animation: float 6s ease-in-out infinite 1.5s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    /* ─── WHO WE SERVE ─────────────────────────── */
+    .section {
+      padding: 6rem 5%;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--gray-dark);
+      line-height: 1.7;
+      font-weight: 300;
+      max-width: 560px;
+    }
+
+    .serve-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .serve-card {
+      border: 1px solid var(--gray-light);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .serve-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--teal);
+      transform: scaleX(0);
+      transition: transform 0.25s;
+      transform-origin: left;
+    }
+
+    .serve-card:hover {
+      border-color: var(--teal);
+      box-shadow: 0 8px 32px rgba(15,118,110,0.1);
+      transform: translateY(-2px);
+    }
+
+    .serve-card:hover::before { transform: scaleX(1); }
+
+    .serve-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .serve-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      color: var(--ink);
+    }
+
+    .serve-card p {
+      font-size: 0.875rem;
+      color: var(--gray-dark);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ─── HOW IT WORKS ─────────────────────────── */
+    .how-section {
+      background: var(--ink);
+      color: white;
+      padding: 6rem 5%;
+    }
+
+    .how-section .section-label { color: #5eead4; }
+    .how-section .section-title { color: white; }
+    .how-section .section-sub { color: #9ca3af; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 4rem;
+      position: relative;
+    }
+
+    .step {
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .step-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: rgba(255,255,255,0.07);
+      line-height: 1;
+      margin-bottom: -0.5rem;
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      font-size: 0.875rem;
+      color: #9ca3af;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .step-dot {
+      width: 8px;
+      height: 8px;
+      background: #5eead4;
+      border-radius: 50%;
+      margin-bottom: 1rem;
+    }
+
+    /* ─── WHAT'S INCLUDED ──────────────────────── */
+    .includes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-top: 3.5rem;
+    }
+
+    .includes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .includes-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.95rem;
+      color: var(--gray-dark);
+      line-height: 1.5;
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .check svg {
+      width: 11px;
+      height: 11px;
+      stroke: var(--teal);
+      fill: none;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .includes-visual {
+      background: linear-gradient(135deg, var(--teal-light) 0%, #f0faf9 100%);
+      border-radius: 16px;
+      padding: 2.5rem;
+      border: 1px solid rgba(15,118,110,0.15);
+    }
+
+    .includes-visual h4 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.3rem;
+      color: var(--teal-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tag {
+      background: white;
+      border: 1px solid rgba(15,118,110,0.2);
+      color: var(--teal-dark);
+      padding: 0.35rem 0.8rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* ─── CONTACT FORM ─────────────────────────── */
+    .contact-section {
+      background: linear-gradient(135deg, #f0faf9 0%, #ffffff 100%);
+      padding: 6rem 5%;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-info h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      font-size: 0.95rem;
+      color: var(--gray-dark);
+      line-height: 1.7;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--gray-dark);
+    }
+
+    .contact-detail strong { color: var(--ink); font-weight: 600; }
+
+    .dot-teal {
+      width: 8px; height: 8px;
+      background: var(--teal);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Form */
+    .b2b-form {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 4px 40px rgba(0,0,0,0.07);
+      border: 1px solid var(--gray-light);
+    }
+
+    .form-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+      color: var(--ink);
+    }
+
+    .form-sub {
+      font-size: 0.8rem;
+      color: var(--gray-mid);
+      margin-bottom: 1.75rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--gray-dark);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      border: 1.5px solid var(--gray-light);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.9rem;
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      background: white;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(15,118,110,0.1);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--teal);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 0.95rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-family: 'DM Sans', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(15,118,110,0.25);
+    }
+
+    .form-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--gray-mid);
+      margin-top: 0.75rem;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .form-success .success-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--teal-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .form-success h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-success p { font-size: 0.875rem; color: var(--gray-dark); }
+
+    /* ─── FOOTER ───────────────────────────────── */
+    footer {
+      background: var(--ink);
+      color: #9ca3af;
+      padding: 2.5rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer .logo-text { color: white; }
+    footer .logo-text span { color: #9ca3af; }
+
+    footer p { font-size: 0.8rem; }
+
+    footer a {
+      color: #5eead4;
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ─── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 100px;
+        padding-bottom: 3rem;
+      }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { display: none; }
+      .includes-grid { grid-template-columns: 1fr; }
+      .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .serve-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .b2b-form { padding: 1.75rem; }
+    }
+
+    /* ─── FADE IN ──────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeIn 0.7s ease forwards;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+  
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark {
+      width: 36px; height: 36px;
+      background: var(--teal);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-mark svg { width: 20px; height: 20px; }
+    .logo-text {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem; font-weight: 700;
+      color: var(--ink); letter-spacing: -0.02em;
+    }
+    .logo-text span { color: var(--teal); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      margin-left: auto;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--gray-mid); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta {
+      background: var(--teal);
+      color: var(--white);
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.875rem; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-links .nav-cta:hover { background: var(--teal-light); color: var(--white); transform: translateY(-1px); }
+
+    .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: auto; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--ink);
+      padding: 56px 48px 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p {
+      font-size: 0.875rem; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.4); margin-top: 16px; max-width: 280px;
+    }
+    .footer-col h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+    .footer-col a {
+      display: block; font-size: 0.875rem; font-weight: 400;
+      color: rgba(255,255,255,0.55); text-decoration: none; margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--teal-light); }
+    .footer-bottom {
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+      padding-top: 28px;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom a { font-size: 0.78rem; color: var(--teal-light); text-decoration: none; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .markets-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 40px 24px 24px; }
+      section { padding: 72px 20px; }
+    }
+    @media (max-width: 480px) {
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .btn-primary, .btn-outline { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Clean Relay Logo" style="height:42px;width:auto;object-fit:contain;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#how">How It Works</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#markets">Who We Serve</a></li>
+    <li><a href="contractors.html">Join as Cleaner</a></li>
+    <li><a href="index.html#waitlist" class="nav-cta">Get Early Access</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div id="mobileMenu" style="display:none; position:fixed; top:68px; left:0; right:0; z-index:99; background:white; padding:24px; border-bottom:1px solid var(--gray);">
+  <a href="index.html#how" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">How It Works</a>
+  <a href="index.html#services" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">Services</a>
+  <a href="index.html#markets" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">Who We Serve</a>
+  <a href="contractors.html" style="display:block; padding:12px 0; font-weight:500; color:var(--teal); text-decoration:none; border-bottom:1px solid var(--gray);">Join as Cleaner</a>
+  <a href="index.html#waitlist" onclick="toggleMenu()" style="display:block; margin-top:16px; background:var(--teal); color:white; text-align:center; padding:13px; border-radius:10px; font-weight:500; text-decoration:none;">Get Early Access</a>
+</div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-badge fade-in">DFW Business Partnerships</div>
+      <h1 class="fade-in delay-1">
+        Cleaning that<br/> <em>runs itself</em><br/>for your portfolio.
+      </h1>
+      <p class="fade-in delay-2">
+        Clean Relay partners with property managers, STR operators, real estate brokers, and corporate relocation firms across the DFW metro delivering reliable, recurring cleans without the overhead of managing it yourself.
+      </p>
+      <div class="hero-actions fade-in delay-3">
+        <a href="#contact" class="btn-primary">Request a Partnership Quote →</a>
+        <a href="#how" class="btn-ghost">How It Works</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="stat-card card-1">
+        <div class="num">48hr</div>
+        <div class="label">Avg. response time</div>
+      </div>
+      <div class="stat-card card-2">
+        <div class="num">4</div>
+        <div class="label">Service types available</div>
+      </div>
+      <div class="stat-card card-3">
+        <div class="num">DFW</div>
+        <div class="label">Metro coverage</div>
+      </div>
+      <div class="check-pill">
+        ✓ No long-term contracts required
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE SERVE -->
+  <section class="section">
+    <div class="section-label">Who We Work With</div>
+    <h2 class="section-title">Built for volume.<br/>Designed for reliability.</h2>
+    <p class="section-sub">If your business depends on a clean, turn-ready space we built this for you.</p>
+
+    <div class="serve-grid">
+      <div class="serve-card">
+        <div class="serve-icon">🏢</div>
+        <h3>Property Management Companies</h3>
+        <p>Keep your units rent-ready between tenants. We handle move-in/move-out cleans, routine maintenance cleans, and deep cleans on your schedule, not ours.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">🏠</div>
+        <h3>Short-Term Rental Managers</h3>
+        <p>Turnovers done right, every time. We sync to your booking calendar and make sure every guest walks into a spotless property.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">🤝</div>
+        <h3>Real Estate Brokers</h3>
+        <p>Listings that show better and sell faster. Pre-listing deep cleans and post-close move-out cleans done professionally and on tight timelines.</p>
+      </div>
+      <div class="serve-card">
+        <div class="serve-icon">📦</div>
+        <h3>Corporate Relocation Firms</h3>
+        <p>Relocating employees need a clean, move-in-ready home. We handle the clean so your clients land somewhere that feels like home from day one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title" style="color:white;">Simple process.<br/>Consistent results.</h2>
+    <p class="section-sub">No complicated onboarding. No back-and-forth. Just a clean system that runs.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-dot"></div>
+        <h3>Submit Your Inquiry</h3>
+        <p>Fill out the form below with your portfolio size, service needs, and frequency. We'll respond within 48 hours.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-dot"></div>
+        <h3>We Build Your Plan</h3>
+        <p>We put together a custom service agreement tailored to your volume, service type, and billing preferences.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-dot"></div>
+        <h3>Sign & Schedule</h3>
+        <p>Review and sign your service agreement. We assign a dedicated point of contact and get your first cleans on the books.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-dot"></div>
+        <h3>We Handle the Rest</h3>
+        <p>Recurring scheduling, vetted pros, and centralized invoicing. You manage your business we manage the cleans.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT'S INCLUDED -->
+  <section class="section">
+    <div class="section-label">What's Included</div>
+    <h2 class="section-title">Everything a B2B<br/>partner should expect.</h2>
+
+    <div class="includes-grid">
+      <ul class="includes-list">
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Signed service agreement with clear SLA terms
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Net-15 / Net-30 centralized invoicing available
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Dedicated point of contact for your account
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Vetted 1099 cleaning professionals
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Proof of general liability insurance on request
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Standard, Deep, Move-In/Out, and Organization services
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          Flexible scheduling for single or multi-unit portfolios
+        </li>
+        <li>
+          <span class="check"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></span>
+          No long-term contracts required to start
+        </li>
+      </ul>
+
+      <div class="includes-visual">
+        <h4>Service Areas</h4>
+        <div class="tag-cloud">
+          <span class="tag">Mansfield</span>
+          <span class="tag">Arlington</span>
+          <span class="tag">Midlothian</span>
+          <span class="tag">Plano</span>
+          <span class="tag">Frisco</span>
+          <span class="tag">Southlake</span>
+          <span class="tag">McKinney</span>
+          <span class="tag">Grand Prairie</span>
+          <span class="tag">Fort Worth</span>
+          <span class="tag">Irving</span>
+          <span class="tag">DeSoto</span>
+          <span class="tag">Cedar Hill</span>
+          <span class="tag">+ More DFW</span>
+        </div>
+
+        <div style="margin-top:2rem; padding-top:1.5rem; border-top: 1px solid rgba(15,118,110,0.15);">
+          <h4 style="margin-bottom:0.75rem;">Services Offered</h4>
+          <div class="tag-cloud">
+            <span class="tag">Standard Clean</span>
+            <span class="tag">Deep Clean</span>
+            <span class="tag">Move-In / Move-Out</span>
+            <span class="tag">Space Organization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="contact-section" id="contact">
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <div class="section-label">Get In Touch</div>
+        <h2>Let's talk about<br/>your portfolio.</h2>
+        <p>
+          Tell us what you're working with and we'll put together a partnership plan that fits. No pressure, no sales pitch just a straight conversation about whether we're a good fit.
+        </p>
+        <div class="contact-detail">
+          <span class="dot-teal"></span>
+          <div><strong>Response time:</strong> within 48 business hours</div>
+        </div>
+        <div class="contact-detail">
+          <span class="dot-teal"></span>
+          <div><strong>Service area:</strong> Dallas-Fort Worth Metro</div>
+        </div>
+        <div class="contact-detail">
+          <span class="dot-teal"></span>
+          <div><strong>Website:</strong> trycleanrelay.com</div>
+        </div>
+      </div>
+
+      <div class="b2b-form">
+        <div class="form-title">Request a Partnership Quote</div>
+        <div class="form-sub">We'll follow up within 48 hours with next steps.</div>
+
+        <form id="b2bForm" action="https://formspree.io/f/xojyypjr" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="first_name" placeholder="Jennifer" required />
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="last_name" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="company">Company Name</label>
+            <input type="text" id="company" name="company" placeholder="Acme Property Group" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Business Email</label>
+            <input type="email" id="email" name="email" placeholder="you@company.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="(817) 555-0100" />
+          </div>
+
+          <div class="form-group">
+            <label for="biz_type">Business Type</label>
+            <select id="biz_type" name="business_type" required>
+              <option value="" disabled selected>Select your business type</option>
+              <option>Property Management Company</option>
+              <option>Short-Term Rental Manager</option>
+              <option>Real Estate Broker / Agent</option>
+              <option>Corporate Relocation Firm</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="units">Estimated Units / Properties</label>
+            <select id="units" name="unit_count">
+              <option value="" disabled selected>How many properties?</option>
+              <option>1–5</option>
+              <option>6–15</option>
+              <option>16–30</option>
+              <option>30+</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Tell us more</label>
+            <textarea id="message" name="message" placeholder="Service type needed, frequency, service area, anything else we should know..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Send My Inquiry →</button>
+          <p class="form-note">No spam. No sales calls. Just a real conversation.</p>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <div class="success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f766e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>Thank you for reaching out!</h3>
+          <p>The Clean Relay team has received your inquiry and will be in touch within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="text-decoration:none;">
+          <img src="logo.png" alt="Clean Relay Logo" style="height:42px;width:auto;object-fit:contain;" />
+        </a>
+        <p>Professional on-demand cleaning for DFW homeowners and property managers. Book online. Come home to clean.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="index.html#how">How It Works</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#markets">Who We Serve</a>
+        <a href="index.html#why">Why Us</a>
+      </div>
+      <div class="footer-col">
+        <h4>Work With Us</h4>
+        <a href="contractors.html">Become a Cleaner</a>
+        <a href="mailto:hello@trycleanrelay.com">Business Inquiries</a>
+        <a href="mailto:hello@trycleanrelay.com">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Clean Relay LLC · Dallas–Fort Worth, TX · trycleanrelay.com</p>
+      <a href="mailto:contact@trycleanrelay.com">contact@trycleanrelay.com</a>
+    </div>
+  </div>
+</footer>
+
+  <script>
+    function toggleMenu() {
+      const m = document.getElementById('mobileMenu');
+      m.style.display = m.style.display === 'none' ? 'block' : 'none';
+    }
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
+    });
+
+    // Form submission handler
+    const form = document.getElementById('b2bForm');
+    const successDiv = document.getElementById('formSuccess');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          form.style.display = 'none';
+          successDiv.style.display = 'block';
+        } else {
+          btn.textContent = 'Something went wrong — try again';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Something went wrong — try again';
+        btn.disabled = false;
+      }
+    });
+  </script>
+
+</body>
+</html>
