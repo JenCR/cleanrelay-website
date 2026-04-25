@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQ | Clean Relay</title>
+  <meta name="description" content="Answers to common questions about booking, pricing, cancellations, and what to expect from Clean Relay in the DFW area." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,900;1,600&family=Montserrat:wght@400;500;600&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal:        #0f766e;
+      --teal-light:  #14b8a6;
+      --teal-dark:   #0a4f49;
+      --teal-faint:  rgba(15,118,110,0.12);
+      --white:       #ffffff;
+      --gray:        #e5e7eb;
+      --gray-light:  #e5e7eb;
+      --gray-mid:    #9ca3af;
+      --gray-soft:   #f3f4f6;
+      --gray-dark:   #374151;
+      --ink:         #1a1a1a;
+      --ink-light:   #2a2a2a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center;
+      padding: 0 48px;
+      height: 68px;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px;
+      margin-left: auto; list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.875rem; font-weight: 500;
+      color: var(--gray-mid); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-links .nav-cta {
+      background: var(--teal); color: var(--white);
+      padding: 9px 20px; border-radius: 8px;
+      font-size: 0.875rem; font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .nav-links .nav-cta:hover { background: var(--teal-light); color: var(--white); transform: translateY(-1px); }
+    .nav-hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; margin-left: auto; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 9rem 5% 5rem;
+      background: linear-gradient(135deg, #f0faf9 0%, #ffffff 60%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -150px; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(15,118,110,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      letter-spacing: -0.02em; line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--teal); }
+    .hero p {
+      font-size: 1rem; color: var(--gray-dark);
+      max-width: 520px; margin: 0 auto 2.5rem;
+      font-weight: 300; line-height: 1.7;
+    }
+
+    /* ─── TABS ─── */
+    .tabs-wrap {
+      padding: 0 5%;
+      margin-top: -1rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 10;
+    }
+    .tab-btn {
+      background: white;
+      border: 1.5px solid var(--gray-light);
+      color: var(--gray-dark);
+      padding: 0.5rem 1.2rem;
+      border-radius: 100px;
+      font-size: 0.825rem; font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: white;
+    }
+
+    /* ─── FAQ ─── */
+    .faq-wrap {
+      max-width: 760px;
+      margin: 4rem auto;
+      padding: 0 5%;
+    }
+    .faq-category { margin-bottom: 3.5rem; }
+    .category-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.3rem; color: var(--teal);
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #e0f2f1;
+    }
+    .faq-item { border-bottom: 1px solid var(--gray-light); }
+    .faq-question {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 1rem; padding: 1.25rem 0;
+      cursor: pointer; list-style: none;
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--ink); transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--teal); }
+    .faq-question::marker,
+    .faq-question::-webkit-details-marker { display: none; }
+    .faq-icon {
+      width: 24px; height: 24px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 50%;
+      display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+      transition: all 0.2s;
+      color: var(--teal);
+      font-size: 1rem; line-height: 1;
+    }
+    details[open] .faq-icon {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: white;
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      padding: 0 0 1.25rem;
+      font-size: 0.9rem; color: var(--gray-dark);
+      line-height: 1.75; font-weight: 300;
+      max-width: 680px;
+    }
+    .faq-answer strong { color: var(--ink); font-weight: 600; }
+
+    /* ─── CTA BAND ─── */
+    .cta-band {
+      background: var(--teal); color: white;
+      padding: 4rem 5%; text-align: center;
+    }
+    .cta-band h2 {
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 0.75rem; letter-spacing: -0.02em;
+    }
+    .cta-band p { font-size: 0.95rem; opacity: 0.85; margin-bottom: 2rem; font-weight: 300; }
+    .btn-white {
+      background: white; color: var(--teal);
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-size: 0.95rem; font-weight: 600;
+      text-decoration: none; display: inline-block;
+      transition: all 0.2s;
+    }
+    .btn-white:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--ink); padding: 56px 48px 32px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px; padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p {
+      font-size: 0.875rem; font-weight: 300; line-height: 1.7;
+      color: rgba(255,255,255,0.4); margin-top: 16px; max-width: 280px;
+    }
+    .footer-col h4 {
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(255,255,255,0.3); margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block; font-size: 0.875rem; font-weight: 400;
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      margin-bottom: 10px; transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--teal-light); }
+    .footer-bottom {
+      display: flex; align-items: center;
+      justify-content: space-between; flex-wrap: wrap;
+      gap: 12px; padding-top: 28px;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.2); }
+    .footer-bottom a { font-size: 0.78rem; color: var(--teal-light); text-decoration: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      footer { padding: 40px 24px 24px; }
+    }
+    @media (max-width: 600px) {
+      .tabs-wrap { gap: 0.4rem; }
+      .tab-btn { font-size: 0.75rem; padding: 0.45rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="logo.png" alt="Clean Relay Logo" style="height:42px;width:auto;object-fit:contain;" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="about.html">About</a></li>
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#markets">Who We Serve</a></li>
+    <li><a href="business.html">Business</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contractors.html">Join as Cleaner</a></li>
+    <li><a href="index.html#waitlist" class="nav-cta">Get Early Access</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div id="mobileMenu" style="display:none; position:fixed; top:68px; left:0; right:0; z-index:99; background:white; padding:24px; border-bottom:1px solid var(--gray);">
+  <a href="about.html" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">About</a>
+  <a href="index.html#services" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">Services</a>
+  <a href="index.html#markets" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">Who We Serve</a>
+  <a href="business.html" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">Business</a>
+  <a href="faq.html" onclick="toggleMenu()" style="display:block; padding:12px 0; font-weight:500; color:var(--ink); text-decoration:none; border-bottom:1px solid var(--gray);">FAQ</a>
+  <a href="contractors.html" style="display:block; padding:12px 0; font-weight:500; color:var(--teal); text-decoration:none; border-bottom:1px solid var(--gray);">Join as Cleaner</a>
+  <a href="index.html#waitlist" onclick="toggleMenu()" style="display:block; margin-top:16px; background:var(--teal); color:white; text-align:center; padding:13px; border-radius:10px; font-weight:500; text-decoration:none;">Get Early Access</a>
+</div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="section-label">Frequently Asked Questions</div>
+    <h1>Got questions?<br/><em>We&#39;ve got answers.</em></h1>
+    <p>Everything you need to know before you book or before you send us a key.</p>
+  </section>
+
+  <!-- TABS -->
+  <div class="tabs-wrap">
+    <button class="tab-btn active" onclick="scrollToSection('booking', this)">Booking</button>
+    <button class="tab-btn" onclick="scrollToSection('services', this)">Services</button>
+    <button class="tab-btn" onclick="scrollToSection('pricing', this)">Pricing</button>
+    <button class="tab-btn" onclick="scrollToSection('pros', this)">Our Pros</button>
+    <button class="tab-btn" onclick="scrollToSection('trust', this)">Trust &amp; Safety</button>
+    <button class="tab-btn" onclick="scrollToSection('business', this)">Business</button>
+  </div>
+
+  <!-- FAQ CONTENT -->
+  <div class="faq-wrap">
+
+    <!-- BOOKING -->
+    <div class="faq-category" id="booking">
+      <div class="category-title">📅 Booking</div>
+      <details class="faq-item">
+        <summary class="faq-question">How do I book a clean?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Head to <strong>trycleanrelay.com/booking</strong> and fill out the booking form. Pick your service type, home size, any extras, your preferred date and time, and enter your payment info. The whole thing takes about 60 seconds. You&#39;ll get a confirmation email right away.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Do I need to be home during the clean?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Nope. Most of our clients aren&#39;t home. You can leave a key, use a lockbox, or provide an entry code — whatever works for you. Just make sure access instructions are included when you book or in your account notes.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Can I schedule a recurring clean?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Yes, and you&#39;ll save money doing it. We offer <strong>weekly (20% off)</strong>, <strong>bi-weekly (15% off)</strong>, and <strong>monthly (10% off)</strong> recurring options. You can set this up directly in the booking flow. Cancel or pause anytime — no contracts.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">How far in advance do I need to book?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">We recommend booking at least <strong>48–72 hours in advance</strong> to ensure availability. For same-day or next-day bookings, availability depends on our current schedule — you&#39;re welcome to try, but we can&#39;t always guarantee it.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Can I cancel or reschedule?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Yes. You can cancel or reschedule through your booking confirmation email or by contacting us directly. We just ask for <strong>at least 24 hours notice</strong> — late cancellations (under 24 hours) may be subject to a fee.</div>
+      </details>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="faq-category" id="services">
+      <div class="category-title">🧹 Services</div>
+      <details class="faq-item">
+        <summary class="faq-question">What&#39;s the difference between a Standard and Deep Clean?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">
+          <p style="margin-bottom:12px;">A <strong>Standard Clean</strong> is your regular recurring maintenance clean designed to keep a consistently maintained home looking and feeling fresh. Here's exactly what's included:</p>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Kitchen</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>Wipe down all countertops and backsplash</li>
+            <li>Clean exterior of appliances (fridge, oven, microwave, dishwasher)</li>
+            <li>Wipe down cabinet fronts</li>
+            <li>Clean and sanitize sink</li>
+            <li>Wipe stovetop surface and burner grates</li>
+            <li>Empty trash and replace liner</li>
+          </ul>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Bathrooms</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>Scrub and disinfect toilet (inside bowl, seat, lid, base, and handle)</li>
+            <li>Clean and shine sink and faucet</li>
+            <li>Scrub shower and/or tub surfaces</li>
+            <li>Wipe down mirrors</li>
+            <li>Clean countertops</li>
+            <li>Sweep and mop floor</li>
+            <li>Empty trash</li>
+          </ul>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Bedrooms &amp; Living Areas</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>Dust all accessible surfaces (nightstands, dressers, shelves, TV stands)</li>
+            <li>Dust ceiling fans and light fixtures (within reach)</li>
+            <li>Wipe down light switches and door handles</li>
+            <li>Make beds and straighten linens (if linens are left out)</li>
+            <li>Vacuum all carpeted areas and rugs</li>
+            <li>Sweep and mop all hard floors</li>
+            <li>Empty trash in all rooms</li>
+          </ul>
+          <p style="color:#6b7280;font-size:0.85rem;font-style:italic;">A Standard Clean is best for homes that are cleaned regularly (every 1–4 weeks). If your home hasn't been professionally cleaned in a while, we recommend starting with a Deep Clean.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What&#39;s included in a Move-In / Move-Out Clean?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">
+          <p style="margin-bottom:12px;">Our Move-In/Move-Out clean is our most comprehensive service a true top-to-bottom pass of the entire property. "Top to bottom" means we work from the highest surfaces down to the floors in every single room so nothing gets re-contaminated. Here's exactly what's included:</p>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Top (Ceilings &amp; High Areas)</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>Ceiling fans and light fixtures dusted and wiped</li>
+            <li>Cobwebs removed from all corners and ceiling edges</li>
+            <li>Air vents wiped down</li>
+          </ul>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Walls &amp; Surfaces</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>Wall spot cleaning (scuffs, fingerprints, marks)</li>
+            <li>Light switches and outlet covers wiped</li>
+            <li>Door frames and doors wiped down</li>
+            <li>Window sills and tracks cleaned</li>
+            <li>Interior windows cleaned</li>
+            <li>Blinds wet wiped (not just dusted)</li>
+            <li>Baseboards scrubbed</li>
+          </ul>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Kitchen</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>Inside and outside of all cabinets and drawers wiped</li>
+            <li>Inside refrigerator cleaned and deodorized</li>
+            <li>Inside oven scrubbed (including racks)</li>
+            <li>Inside microwave cleaned</li>
+            <li>Countertops, backsplash, and sink fully sanitized</li>
+            <li>Stovetop and burners deep cleaned</li>
+          </ul>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Bathrooms</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>Grout scrubbed in shower and tub</li>
+            <li>Toilet fully disinfected inside and out</li>
+            <li>Inside medicine cabinet and vanity drawers wiped</li>
+            <li>Mirrors and chrome fixtures polished</li>
+          </ul>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">Floors (Last- always done last)</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li>All carpets vacuumed thoroughly including edges</li>
+            <li>All hard floors swept then mopped</li>
+            <li>Tile grout lines cleaned</li>
+          </ul>
+          <p style="color:#6b7280;font-size:0.85rem;font-style:italic;">This service is designed to pass a landlord walk-through or make a new home move-in ready. Pricing is based on home size get your exact quote at booking.</p>
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What exactly is included in a Deep Clean, what makes it different?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">
+          <p style="margin-bottom:12px;">A Deep Clean includes everything in a Standard Clean, plus all the areas that get skipped during regular maintenance. Think of it as resetting your home to a baseline level of clean. Here's what's <strong>extra</strong> compared to a Standard Clean:</p>
+          <p style="margin-bottom:8px;font-weight:600;color:var(--ink);">What's Added on Top of Standard</p>
+          <ul style="margin:0 0 12px 18px;line-height:2;">
+            <li><strong>Baseboards</strong> — hand wiped along every wall in every room</li>
+            <li><strong>Door frames</strong> — top and sides wiped down</li>
+            <li><strong>Interior windows</strong> — glass cleaned inside, sills and tracks wiped</li>
+            <li><strong>Blinds</strong> — wet wiped slat by slat (not just dusted)</li>
+            <li><strong>Inside the oven</strong> — racks removed, interior scrubbed</li>
+            <li><strong>Inside the refrigerator</strong> — shelves and drawers removed and wiped</li>
+            <li><strong>Inside the microwave</strong> — walls, ceiling, and turntable cleaned</li>
+            <li><strong>Cabinet fronts and handles</strong> — wiped and degreased</li>
+            <li><strong>Light switches and outlet covers</strong> — sanitized throughout</li>
+            <li><strong>Ceiling fans</strong> — blades and housing wiped down</li>
+            <li><strong>Behind and under furniture</strong> — vacuumed and mopped where accessible</li>
+            <li><strong>Shower grout and tile</strong> — scrubbed not just wiped</li>
+          </ul>
+          <p style="color:#6b7280;font-size:0.85rem;font-style:italic;">We recommend starting with a Deep Clean if your home hasn't been professionally cleaned in the last 4–6 weeks. After that, a Standard recurring clean keeps it maintained.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-question">What does Space Organization include?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Space Organization is about bringing order to areas that have gotten out of hand closets, pantries, home offices, garages, or any room that needs a reset. Your pro will sort, declutter, and arrange the space in a way that&#39;s functional and easy to maintain. Scope varies by room, so include details when booking.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Do your pros bring their own supplies and equipment?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Yes. Our independent cleaning professionals arrive with their own supplies and equipment. If you have a preference for specific products (pet-safe, fragrance-free, etc.), just add a note when booking and they&#39;ll do their best to accommodate.</div>
+      </details>
+    </div>
+
+    <!-- PRICING -->
+    <div class="faq-category" id="pricing">
+      <div class="category-title">💳 Pricing</div>
+      <details class="faq-item">
+        <summary class="faq-question">How is pricing calculated?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Pricing is based on your <strong>number of bedrooms and bathrooms</strong>, the service type you select, and any add-ons. You&#39;ll see your exact price before you confirm no surprises at checkout.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">When am I charged?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Payment is collected at the time of booking through our secure checkout. We use <strong>Stripe</strong> for all transactions — your card info is never stored on our end.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Do you offer discounts for recurring bookings?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Yes. <strong>Weekly bookings save 20%</strong>, <strong>bi-weekly saves 15%</strong>, and <strong>monthly saves 10%</strong>. Discounts are applied automatically when you select a recurring frequency during checkout.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What&#39;s your refund policy?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">If you&#39;re not satisfied with your clean, contact us within <strong>24 hours</strong> and we&#39;ll make it right either a re-clean of the affected areas or a credit toward your next booking. We stand behind the work.</div>
+      </details>
+    </div>
+
+    <!-- OUR PROS -->
+    <div class="faq-category" id="pros">
+      <div class="category-title">👤 Our Pros</div>
+      <details class="faq-item">
+        <summary class="faq-question">Who are the people cleaning my home?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Clean Relay works with vetted independent cleaning professionals in the DFW area. Each pro goes through our onboarding process before being matched to bookings. They&#39;re experienced, professional, and take their work seriously your home is in good hands.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Can I request the same pro each time?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">We do our best to match you with the same pro for recurring bookings. Availability can vary, but consistency is something we prioritize. If you have a strong preference, let us know and we&#39;ll note it on your account.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What if I&#39;m not happy with the pro assigned?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Just reach out and let us know. We&#39;ll reassign you for your next booking no awkward conversations needed. Your comfort and satisfaction come first.</div>
+      </details>
+    </div>
+
+    <!-- TRUST & SAFETY -->
+    <div class="faq-category" id="trust">
+      <div class="category-title">🔒 Trust &amp; Safety</div>
+      <details class="faq-item">
+        <summary class="faq-question">Is Clean Relay insured?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Yes. Clean Relay carries general liability insurance. For B2B partners who need proof of insurance as part of a service agreement, we can provide documentation upon request.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Is my payment information secure?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">All payments are processed through <strong>Stripe</strong>, which is PCI-DSS compliant. We never see or store your full card details everything is handled securely through Stripe&#39;s platform.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">What happens if something is damaged during a clean?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Contact us immediately with details and photos. We take damage claims seriously and will work with you to resolve the situation. Our liability coverage exists for situations like this.</div>
+      </details>
+    </div>
+
+    <!-- BUSINESS -->
+    <div class="faq-category" id="business">
+      <div class="category-title">🏢 Business &amp; Partnerships</div>
+      <details class="faq-item">
+        <summary class="faq-question">Do you work with property managers or STR operators?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Yes, this is a big part of what we do. We have a dedicated B2B partnership program for property managers, short-term rental operators, real estate brokers, and corporate relocation firms. Visit our <a href="business.html" style="color:var(--teal);font-weight:600;">Business page</a> to learn more and submit an inquiry.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">Do you offer net-30 invoicing for business accounts?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">Yes. B2B partners can be set up with <strong>net-15 or net-30 invoicing</strong> as part of a signed service agreement. This is handled outside of the standard booking flow reach out through the Business page to get started.</div>
+      </details>
+      <details class="faq-item">
+        <summary class="faq-question">I want to clean for Clean Relay. How do I apply?<span class="faq-icon">+</span></summary>
+        <div class="faq-answer">We&#39;re always looking for reliable, experienced cleaning professionals in the DFW area. Visit our <a href="contractors.html" style="color:var(--teal);font-weight:600;">Contractors page</a> to learn about the opportunity and apply.</div>
+      </details>
+    </div>
+
+  </div>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <h2>Still have a question?</h2>
+    <p>Reach out directly we&#39;re real people and we respond fast.</p>
+    <a href="mailto:hello@trycleanrelay.com" class="btn-white">Contact Us →</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="nav-logo" style="text-decoration:none;">
+            <img src="logo.png" alt="Clean Relay Logo" style="height:42px;width:auto;object-fit:contain;" />
+          </a>
+          <p>Professional on-demand cleaning for DFW homeowners and property managers. Book online. Come home to clean.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="about.html">About</a>
+          <a href="index.html#how">How It Works</a>
+          <a href="index.html#services">Services</a>
+          <a href="index.html#markets">Who We Serve</a>
+          <a href="index.html#why">Why Us</a>
+        </div>
+        <div class="footer-col">
+          <h4>Work With Us</h4>
+          <a href="contractors.html">Become a Cleaner</a>
+          <a href="business.html">Business Inquiries</a>
+          <a href="faq.html">FAQ</a>
+          <a href="mailto:hello@trycleanrelay.com">Contact Us</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Clean Relay LLC · Dallas–Fort Worth, TX · trycleanrelay.com</p>
+        <a href="mailto:contact@trycleanrelay.com">contact@trycleanrelay.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Tab scroll — renamed to avoid conflict with browser's built-in scrollTo
+    function scrollToSection(id, btn) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    // Mobile menu
+    function toggleMenu() {
+      const m = document.getElementById('mobileMenu');
+      m.style.display = m.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Nav shadow on scroll
+    window.addEventListener('scroll', () => {
+      document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(0,0,0,0.08)' : 'none';
+    });
+  </script>
+
+</body>
+</html>
