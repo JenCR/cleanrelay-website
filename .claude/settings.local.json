@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//Volumes/LaCie/Clean Relay/clean relay landing page /**)",
+      "Read(//Volumes/LaCie/Clean Relay/**)"
+    ]
+  }
+}

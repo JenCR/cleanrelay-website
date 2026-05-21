@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contractor Availability | Clean Relay</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --teal: #0f766e;
+      --teal-light: #14b8a6;
+      --teal-pale: #ccfbf1;
+      --white: #ffffff;
+      --gray-light: #e5e7eb;
+      --gray-mid: #9ca3af;
+      --gray-dark: #374151;
+      --gray-bg: #f9fafb;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: var(--gray-bg);
+      color: var(--gray-dark);
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--teal);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 4px solid var(--teal-light);
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--white);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg { width: 28px; height: 28px; }
+
+    .logo-text { font-family: 'Poppins', sans-serif; color: var(--white); }
+
+    .logo-text span:first-child {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.1;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.7rem;
+      font-weight: 400;
+      opacity: 0.8;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    /* HERO BAND */
+    .page-hero {
+      background: linear-gradient(135deg, var(--teal) 0%, #0d9488 100%);
+      padding: 40px 32px 36px;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .page-hero h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .page-hero p {
+      font-size: 0.95rem;
+      opacity: 0.88;
+      max-width: 480px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* FORM WRAPPER */
+    .form-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 32px 20px 64px;
+    }
+
+    /* CARDS */
+    .card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
+      border: 1px solid var(--gray-light);
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    }
+
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title::before {
+      content: '';
+      width: 3px;
+      height: 16px;
+      background: var(--teal-light);
+      border-radius: 2px;
+    }
+
+    /* FORM FIELDS */
+    .field-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 540px) { .field-group { grid-template-columns: 1fr; } }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gray-dark);
+      letter-spacing: 0.01em;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid var(--gray-light);
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--gray-dark);
+      background: var(--white);
+      transition: border-color 0.2s;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--teal-light);
+      box-shadow: 0 0 0 3px rgba(20,184,166,0.15);
+    }
+
+    /* AVAILABILITY GRID */
+    .avail-grid {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .avail-table {
+      width: 100%;
+      min-width: 460px;
+      border-collapse: separate;
+      border-spacing: 5px;
+    }
+
+    .avail-table th {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gray-mid);
+      padding: 4px 6px;
+      text-align: center;
+    }
+
+    .avail-table th.row-label { text-align: left; width: 110px; }
+
+    .avail-table td { padding: 0; text-align: center; }
+
+    .avail-table td.time-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gray-dark);
+      text-align: left;
+      padding: 4px 8px 4px 0;
+      white-space: nowrap;
+    }
+
+    .cell-check { display: none; }
+
+    .cell-label {
+      display: block;
+      width: 100%;
+      height: 38px;
+      border-radius: 7px;
+      background: var(--gray-light);
+      cursor: pointer;
+      transition: background 0.15s;
+      border: 2px solid transparent;
+    }
+
+    .cell-label:hover { background: var(--teal-pale); border-color: var(--teal-light); }
+
+    .cell-check:checked + .cell-label {
+      background: var(--teal);
+      border-color: var(--teal);
+    }
+
+    .cell-check:checked + .cell-label::after {
+      content: '✓';
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    /* AREA PILLS */
+    .area-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+    }
+
+    .area-check { display: none; }
+
+    .area-label {
+      display: block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 2px solid var(--gray-light);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: var(--white);
+      color: var(--gray-dark);
+    }
+
+    .area-label:hover { border-color: var(--teal-light); color: var(--teal); background: var(--teal-pale); }
+
+    .area-check:checked + .area-label {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* HOURS PILLS */
+    .radio-row { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .radio-opt { display: none; }
+
+    .radio-lbl {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 2px solid var(--gray-light);
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: var(--gray-dark);
+    }
+
+    .radio-lbl:hover { border-color: var(--teal-light); color: var(--teal); }
+
+    .radio-opt:checked + .radio-lbl {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: var(--white);
+      font-weight: 600;
+    }
+
+    /* SUBMIT */
+    .submit-wrap { text-align: center; margin-top: 8px; }
+
+    button[type="submit"] {
+      background: var(--teal);
+      color: var(--white);
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 14px 48px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.02em;
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+      box-shadow: 0 4px 14px rgba(15,118,110,0.3);
+    }
+
+    button[type="submit"]:hover {
+      background: #0d6e67;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(15,118,110,0.4);
+    }
+
+    button[type="submit"]:active { transform: translateY(0); }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--gray-mid);
+      margin-top: 12px;
+    }
+
+    footer {
+      background: var(--teal);
+      text-align: center;
+      padding: 18px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.75rem;
+    }
+
+    footer a { color: var(--teal-light); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="logo.png" alt="Clean Relay" style="height:44px;width:auto;" />
+    <div class="logo-text">
+      <span>Clean Relay</span>
+      <span>trycleanrelay.com</span>
+    </div>
+  </header>
+
+  <!-- LAUNCH BANNER -->
+  <div style="background:#14b8a6;padding:10px 20px;text-align:center;color:#ffffff;font-size:0.82rem;">
+   We're launching June 1st! Thank you for being part of the Clean Relay team.
+  </div>
+
+  <!-- HERO -->
+  <div class="page-hero">
+    <h1>Set Your Availability</h1>
+    <p>Let us know when and where you're available to work. You can always update this as your schedule changes.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-wrapper">
+    <!-- ⚠️ Replace YOUR_FORMSPREE_ID with your actual Formspree form ID -->
+    <form action="https://formspree.io/f/mnjraznj" method="POST">
+
+      <!-- CONTACT INFO -->
+      <div class="card">
+        <div class="card-title">Your Information</div>
+        <div class="field-group">
+          <div class="field">
+            <label for="first_name">First Name *</label>
+            <input type="text" id="first_name" name="first_name" required placeholder="Jane" />
+          </div>
+          <div class="field">
+            <label for="last_name">Last Name *</label>
+            <input type="text" id="last_name" name="last_name" required placeholder="Smith" />
+          </div>
+          <div class="field">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required placeholder="jane@email.com" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="(817) 555-0100" />
+          </div>
+        </div>
+      </div>
+
+      <!-- SERVICE AREAS -->
+      <div class="card">
+        <div class="card-title">Service Areas</div>
+        <p style="font-size:0.82rem;color:var(--gray-mid);margin-bottom:14px;">Select all cities you're willing to travel to for jobs.</p>
+        <div class="area-grid">
+          <div>
+            <input class="area-check" type="checkbox" id="area_mansfield" name="area[]" value="Mansfield" />
+            <label class="area-label" for="area_mansfield">📍 Mansfield</label>
+          </div>
+          <div>
+            <input class="area-check" type="checkbox" id="area_midlothian" name="area[]" value="Midlothian" />
+            <label class="area-label" for="area_midlothian">📍 Midlothian</label>
+          </div>
+          <div>
+            <input class="area-check" type="checkbox" id="area_waxahachie" name="area[]" value="Waxahachie" />
+            <label class="area-label" for="area_waxahachie">📍 Waxahachie</label>
+          </div>
+          <div>
+            <input class="area-check" type="checkbox" id="area_kennedale" name="area[]" value="Kennedale" />
+            <label class="area-label" for="area_kennedale">📍 Kennedale</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- WEEKLY AVAILABILITY GRID -->
+      <div class="card">
+        <div class="card-title">Weekly Availability</div>
+        <p style="font-size:0.82rem;color:var(--gray-mid);margin-bottom:18px;">Tap the blocks for times you're generally available each week.</p>
+        <div class="avail-grid">
+          <table class="avail-table">
+            <thead>
+              <tr>
+                <th class="row-label"></th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+                <th>Sun</th>
+              </tr>
+            </thead>
+            <tbody id="avail-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- HOURS PER WEEK -->
+      <div class="card">
+        <div class="card-title">Hours Per Week</div>
+        <p style="font-size:0.82rem;color:var(--gray-mid);margin-bottom:14px;">How many hours are you looking to work each week?</p>
+        <div class="radio-row">
+          <input class="radio-opt" type="radio" id="hrs_5"    name="hours_per_week" value="1–5 hours" />
+          <label class="radio-lbl" for="hrs_5">1–5 hrs</label>
+          <input class="radio-opt" type="radio" id="hrs_10"   name="hours_per_week" value="5–10 hours" />
+          <label class="radio-lbl" for="hrs_10">5–10 hrs</label>
+          <input class="radio-opt" type="radio" id="hrs_20"   name="hours_per_week" value="10–20 hours" />
+          <label class="radio-lbl" for="hrs_20">10–20 hrs</label>
+          <input class="radio-opt" type="radio" id="hrs_full" name="hours_per_week" value="20+ hours" />
+          <label class="radio-lbl" for="hrs_full">20+ hrs</label>
+        </div>
+      </div>
+
+      <!-- TEAM COMFORT -->
+      <div class="card">
+        <div class="card-title">Working with a Team</div>
+        <p style="font-size:0.82rem;color:var(--gray-mid);margin-bottom:18px;">Some jobs, especially larger homes or commercial spaces may require two contractors working together. How do you feel about that?</p>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div>
+            <input class="radio-opt" type="radio" id="team_yes" name="team_comfort" value="Yes – I'm comfortable working with a partner" required />
+            <label class="radio-lbl" for="team_yes" style="border-radius:8px;display:block;padding:12px 16px;">
+            Yes — I'm comfortable working with another contractor
+            </label>
+          </div>
+          <div>
+            <input class="radio-opt" type="radio" id="team_sometimes" name="team_comfort" value="Sometimes – depends on the job" />
+            <label class="radio-lbl" for="team_sometimes" style="border-radius:8px;display:block;padding:12px 16px;">
+            Sometimes — depends on the job
+            </label>
+          </div>
+          <div>
+            <input class="radio-opt" type="radio" id="team_solo" name="team_comfort" value="No – I prefer to work solo" />
+            <label class="radio-lbl" for="team_solo" style="border-radius:8px;display:block;padding:12px 16px;">
+            No — I prefer to work solo
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <div class="submit-wrap">
+        <button type="submit">Submit Availability →</button>
+        <p class="form-note">Your availability helps us match you with jobs in your area. You can update anytime.</p>
+      </div>
+
+    </form>
+  </div>
+
+  <footer>
+    &copy; 2026 Clean Relay &nbsp;|&nbsp; <a href="https://trycleanrelay.com">trycleanrelay.com</a> 
+  </footer>
+
+  <script>
+    const timeBlocks = [
+      { label: "Morning",   sub: "7am – 10am",  id: "morning"   },
+      { label: "Midday",    sub: "10am – 1pm",  id: "midday"    },
+      { label: "Afternoon", sub: "1pm – 4pm",   id: "afternoon" },
+      { label: "Evening",   sub: "4pm – 7pm",   id: "evening"   },
+    ];
+
+    const days = ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+    const tbody = document.getElementById("avail-body");
+
+    timeBlocks.forEach(block => {
+      const tr = document.createElement("tr");
+
+      const tdLabel = document.createElement("td");
+      tdLabel.className = "time-label";
+      tdLabel.innerHTML = `<strong>${block.label}</strong><br><span style="font-size:0.7rem;color:#9ca3af;font-weight:400">${block.sub}</span>`;
+      tr.appendChild(tdLabel);
+
+      days.forEach(day => {
+        const td = document.createElement("td");
+        const checkId = `avail_${block.id}_${day.toLowerCase()}`;
+        const name    = `availability[${block.label}][${day}]`;
+        td.innerHTML = `
+          <input class="cell-check" type="checkbox" id="${checkId}" name="${name}" value="available" />
+          <label class="cell-label" for="${checkId}" title="${day} ${block.label}"></label>
+        `;
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
+    });
+  </script>
+
+</body>
+</html>
