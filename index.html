@@ -87,7 +87,7 @@
     }
     .hero h1 em { font-style: italic; color: var(--teal); display: block; }
     .hero-sub {
-      margin-top: 20px; font-size: 1.05rem; font-weight: 300;
+      margin-top: 20px; font-size: 1.05rem; font-weight: 400;
       line-height: 1.8; color: #6b7280; max-width: 460px;
       animation: fadeUp 0.8s 0.3s both;
     }
@@ -111,7 +111,7 @@
     .btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-2px); }
 
     .hero-trust { margin-top: 48px; display: flex; gap: 28px; flex-wrap: wrap; animation: fadeUp 0.8s 0.5s both; }
-    .trust-item { display: flex; align-items: center; gap: 9px; font-size: 0.8rem; font-weight: 500; color: #9ca3af; }
+    .trust-item { display: flex; align-items: center; gap: 9px; font-size: 0.8rem; font-weight: 600; color: #4b5563; }
     .trust-dot { width: 6px; height: 6px; background: var(--teal-light); border-radius: 50%; flex-shrink: 0; }
 
     .hero-pricing {
@@ -215,12 +215,26 @@
   color: rgba(255,255,255,0.5);
   font-weight: 300;
 }
-.promo-date {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255,255,255,0.85);
+.promo-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
   white-space: nowrap;
+}
+.countdown-label {
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.6);
   font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.countdown-time {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: white;
 }
 
     /* ── STATS STRIP ── */
@@ -358,20 +372,26 @@
     .service-body { padding: 24px 28px 28px; }
     .service-body h3 { font-family: 'Poppins', sans-serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
     .service-body p { font-size: 0.875rem; font-weight: 300; line-height: 1.75; color: var(--gray-mid); margin-bottom: 16px; }
-    .service-price {
-      font-size: 0.78rem;
-      color: var(--gray-mid);
-      margin-bottom: 6px;
-      font-family: 'Montserrat', sans-serif;
-    }
-    .service-price strong {
-      color: var(--teal);
-      font-weight: 700;
-      font-size: 0.9rem;
-    }
     .service-includes { list-style: none; display: flex; flex-direction: column; gap: 7px; }
     .service-includes li { display: flex; align-items: center; gap: 9px; font-size: 0.8rem; font-weight: 500; color: var(--ink); }
     .service-includes li::before { content: ''; width: 16px; height: 16px; flex-shrink: 0; background: var(--teal-faint); border-radius: 50%; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='none' stroke='%230f766e' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: center; }
+    .service-cta {
+      display: inline-block;
+      margin-top: 20px;
+      background: var(--teal);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .service-cta:hover {
+      background: var(--teal-light);
+      transform: translateY(-1px);
+    }
 
     /* ── TESTIMONIALS ── */
     #testimonials { background: #f0faf9; padding: 100px 80px; }
@@ -546,13 +566,13 @@
 
 <!-- Mobile Menu -->
 <div id="mobileMenu" style="display:none;position:fixed;top:72px;left:0;right:0;z-index:99;background:white;padding:24px;border-bottom:1px solid var(--gray);box-shadow:0 8px 24px rgba(0,0,0,0.08);">
-  <a href="about.html" onclick="toggleMenu()" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">About</a>
+  <a href="about.html" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">About</a>
   <a href="#services" onclick="toggleMenu()" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">Services</a>
   <a href="#markets" onclick="toggleMenu()" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">Who We Serve</a>
-  <a href="business.html" onclick="toggleMenu()" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">Business</a>
-  <a href="faq.html" onclick="toggleMenu()" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">FAQ</a>
-  <a href="contractors.html" onclick="toggleMenu()" style="display:block;padding:12px 0;font-weight:500;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--gray);">Join as Cleaner</a>
-  <a href="https://book.trycleanrelay.com" onclick="toggleMenu()" style="display:block;margin-top:16px;background:var(--teal);color:white;text-align:center;padding:14px;border-radius:10px;font-weight:600;text-decoration:none;">Book Now</a>
+  <a href="business.html" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">Business</a>
+  <a href="faq.html" style="display:block;padding:12px 0;font-weight:500;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--gray);">FAQ</a>
+  <a href="contractors.html" style="display:block;padding:12px 0;font-weight:500;color:var(--teal);text-decoration:none;border-bottom:1px solid var(--gray);">Join as Cleaner</a>
+  <a href="https://book.trycleanrelay.com" style="display:block;margin-top:16px;background:var(--teal);color:white;text-align:center;padding:14px;border-radius:10px;font-weight:600;text-decoration:none;">Book Now</a>
 </div>
 
 <!-- HERO -->
@@ -579,16 +599,19 @@
   <div class="hero-promo-inner">
     <div class="promo-badge">LIMITED OFFER</div>
     <div class="promo-text">
-      <strong>$25 Off Your First Clean</strong>
+      <strong>$25 Off Your First Clean — Launching June 1st</strong>
       <span class="promo-code">Use code: <em>25OFF</em> at checkout!</span>
       <span class="promo-fine">*One per customer · First booking only</span>
     </div>
-    <div class="promo-date"> starting June 1st</div>
+    <div class="promo-countdown">
+  <span class="countdown-label">Bookings go live in</span>
+  <span id="countdown-timer" class="countdown-time">--d --h --m</span>
+</div>
   </div>
 </div>
     <div class="hero-actions">
       <a href="https://book.trycleanrelay.com" class="btn-primary">Book a Clean →</a>
-      <a href="#how" class="btn-outline">How It Works</a>
+      <a href="#services" class="btn-outline">See Pricing →</a>
     </div>
     <div class="hero-trust">
       <div class="trust-item"><div class="trust-dot"></div>Background-Checked Pros</div>
@@ -612,6 +635,95 @@
   <div class="stat-item"><div class="stat-num">20%</div><div class="stat-label">Weekly recurring discount</div></div>
   <div class="stat-item"><div class="stat-num">DFW</div><div class="stat-label">Locally built & operated</div></div>
 </div>
+
+<!-- MARKETS -->
+<section id="markets">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Who We Serve</div>
+      <h2 class="section-title">Residential <em>&amp; commercial.</em></h2>
+      <p class="section-sub">Whether you're a homeowner or managing 20 units, we have a solution that scales with you.</p>
+    </div>
+    <div class="markets-grid">
+      <div class="market-block reveal">
+        <div class="market-photo">
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80&auto=format&fit=crop" alt="Residential cleaning" />
+          <div class="market-photo-overlay"></div>
+        </div>
+        <div class="market-body">
+          <div class="market-type">Residential</div>
+          <h3>Homeowners &amp; Renters</h3>
+          <p>Life's too short to spend your weekend cleaning. Let us handle it on a schedule that works for you.</p>
+          <ul class="market-list">
+            <li><span></span>Weekly &amp; bi-weekly recurring cleans</li>
+            <li><span></span>One-time deep cleans</li>
+            <li><span></span>Move-in / move-out cleanings</li>
+            <li><span></span>Post-renovation cleanup</li>
+            <li><span></span>Space organization sessions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="market-block reveal">
+        <div class="market-photo">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop" alt="Commercial cleaning services" />
+          <div class="market-photo-overlay"></div>
+        </div>
+        <div class="market-body">
+          <div class="market-type">Commercial &amp; B2B</div>
+          <h3>Property Managers &amp; Operators</h3>
+          <p>We understand turnaround timelines. Reliable, scalable cleaning for your portfolio.</p>
+          <ul class="market-list">
+            <li><span></span>Short-term rental turnovers</li>
+            <li><span></span>Multi-unit property management</li>
+            <li><span></span>Corporate relocation firms</li>
+            <li><span></span>Small office complexes</li>
+            <li><span></span>Net-30 invoicing available</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3-STEP VISUAL -->
+<section id="three-step">
+  <div class="container">
+    <div class="reveal" style="text-align:center;margin-bottom:0;">
+      <div class="section-label">Simple Process</div>
+      <h2 class="section-title">Book. Confirm. <em>Relax.</em></h2>
+    </div>
+    <div class="three-step-grid reveal">
+
+      <div class="three-step-item">
+        <div class="step-circle-num">1</div>
+        <div class="step-circle-wrap">
+          <img src="22.png" alt="Book your appointment" />
+        </div>
+        <h3>Book Your Appointment</h3>
+        <p>Pick your service, home size, and preferred date. See your price upfront, no surprises.</p>
+      </div>
+
+      <div class="three-step-item">
+        <div class="step-circle-num">2</div>
+        <div class="step-circle-wrap">
+          <img src="23.png" alt="Get confirmation" />
+        </div>
+        <h3>Get Confirmation</h3>
+        <p>Instant booking confirmation sent to your inbox. We'll let you know who's coming before they arrive.</p>
+      </div>
+
+      <div class="three-step-item">
+        <div class="step-circle-num">3</div>
+        <div class="step-circle-wrap">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=400&q=80&auto=format&fit=crop" alt="Relax, it's done" />
+        </div>
+        <h3>Relax. It's Done.</h3>
+        <p>Come home to a spotless space. Not happy? We make it right guaranteed, no questions asked.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- TRUST FEATURES (6-icon grid) -->
 <section id="trust-features">
@@ -660,7 +772,7 @@
           <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
         </div>
         <h3>Here When You Need Us</h3>
-        <p>Questions before your booking? Issues after? We're real people and we respond fast.</p>
+        <p>Questions before your booking? Same-day bookings available. We're real people and we respond within a few hours.</p>
       </div>
 
       <div class="trust-feat">
@@ -739,7 +851,6 @@
           <div class="service-photo-tag">Most Popular</div>
         </div>
         <div class="service-body">
-          <div class="service-price">From <strong>$130</strong> · 2bd/2ba</div>
           <h3>Standard Clean</h3>
           <p>Your go-to for weekly or bi-weekly upkeep. Keeps your home consistently clean without the effort.</p>
           <ul class="service-includes">
@@ -749,6 +860,7 @@
             <li>Dusting surfaces & furniture</li>
             <li>Trash removal throughout</li>
           </ul>
+          <a href="https://book.trycleanrelay.com" class="service-cta">Book Standard Clean →</a>
         </div>
       </div>
       <div class="service-card reveal">
@@ -758,7 +870,6 @@
           <div class="service-photo-tag">Thorough</div>
         </div>
         <div class="service-body">
-          <div class="service-price">From <strong>$215</strong> · 2bd/2ba</div>
           <h3>Deep Clean</h3>
           <p>A full reset. Perfect for seasonal refreshes or homes that haven't been professionally cleaned in a while.</p>
           <ul class="service-includes">
@@ -768,6 +879,7 @@
             <li>Inside oven & refrigerator</li>
             <li>Grout scrubbing in showers</li>
           </ul>
+          <a href="https://book.trycleanrelay.com" class="service-cta">Book Deep Clean →</a>
         </div>
       </div>
       <div class="service-card reveal">
@@ -777,7 +889,6 @@
           <div class="service-photo-tag">Transition Ready</div>
         </div>
         <div class="service-body">
-          <div class="service-price">From <strong>$232</strong> · 2bd/2ba</div>
           <h3>Move-In / Move-Out</h3>
           <p>Deposit-protecting, landlord-approved level clean. Leave spotless or start fresh we handle the whole property.</p>
           <ul class="service-includes">
@@ -787,6 +898,7 @@
             <li>Inside fridge & oven</li>
             <li>Window tracks & sills</li>
           </ul>
+          <a href="https://book.trycleanrelay.com" class="service-cta">Book Move-In/Out Clean →</a>
         </div>
       </div>
       <div class="service-card reveal">
@@ -796,7 +908,6 @@
           <div class="service-photo-tag">Organize</div>
         </div>
         <div class="service-body">
-          <div class="service-price">From <strong>$30</strong> · per session</div>
           <h3>Space Organization</h3>
           <p>More than cleaning we sort, declutter, and restructure your space so it actually stays clean longer.</p>
           <ul class="service-includes">
@@ -806,6 +917,7 @@
             <li>Declutter coaching included</li>
             <li>Pairs with any clean service</li>
           </ul>
+          <a href="https://book.trycleanrelay.com" class="service-cta">Book Organization Session →</a>
         </div>
       </div>
     </div>
@@ -826,7 +938,7 @@
         <p>"Booked in under two minutes and came home to the cleanest my kitchen has ever been. The attention to detail was impressive, they got spots I'd completely forgotten about."</p>
         <div class="testimonial-author">
           <div class="author-avatar">
-            <div style="width:100%;height:100%;background:#0f766e;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;color:white;">T</div>
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80&auto=format&fit=crop&crop=face" alt="Client" />
           </div>
           <div class="author-info"><h4>Tanya M.</h4><p>Mansfield, TX · Recurring Client</p></div>
         </div>
@@ -836,7 +948,7 @@
         <p>"As a property manager with 12 units I needed someone reliable for turnovers. Clean Relay showed up on time, communicated clearly, and the units were move-in ready same day."</p>
         <div class="testimonial-author">
           <div class="author-avatar">
-            <div style="width:100%;height:100%;background:#0a4f49;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;color:white;">M</div>
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80&auto=format&fit=crop&crop=face" alt="Client" />
           </div>
           <div class="author-info"><h4>Marcus D.</h4><p>Arlington, TX · Property Manager</p></div>
         </div>
@@ -846,7 +958,7 @@
         <p>"The move-out clean was phenomenal. My landlord said it was the cleanest he'd seen the unit in years. Got my full deposit back without any issues. Worth every penny."</p>
         <div class="testimonial-author">
           <div class="author-avatar">
-            <div style="width:100%;height:100%;background:#14b8a6;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:700;color:white;">J</div>
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80&auto=format&fit=crop&crop=face" alt="Client" />
           </div>
           <div class="author-info"><h4>Jasmine R.</h4><p>Midlothian, TX · Move-Out Clean</p></div>
         </div>
@@ -889,73 +1001,12 @@
       </div>
       <div class="why-photo-wrap reveal" style="position:relative;">
         <img src="13.svg" alt="Professional cleaning service" />
-<div class="why-photo-card-bottom"><p>Our promise</p><h4>100% Vetted Pros</h4></div>
+        <div class="why-photo-card"><p>Average rating</p><h4>★ 4.9 / 5.0</h4></div>
+        <div class="why-photo-card-bottom"><p>Our promise</p><h4>100% Vetted Pros</h4></div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- MARKETS -->
-<section id="markets">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Who We Serve</div>
-      <h2 class="section-title">Residential <em>&amp; commercial.</em></h2>
-      <p class="section-sub">Whether you're a homeowner or managing 20 units, we have a solution that scales with you.</p>
-    </div>
-    <div class="markets-grid">
-      <div class="market-block reveal">
-        <div class="market-photo">
-          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80&auto=format&fit=crop" alt="Residential cleaning" />
-          <div class="market-photo-overlay"></div>
-        </div>
-        <div class="market-body">
-          <div class="market-type">Residential</div>
-          <h3>Homeowners &amp; Renters</h3>
-          <p>Life's too short to spend your weekend cleaning. Let us handle it on a schedule that works for you.</p>
-          <ul class="market-list">
-            <li><span></span>Weekly &amp; bi-weekly recurring cleans</li>
-            <li><span></span>One-time deep cleans</li>
-            <li><span></span>Move-in / move-out cleanings</li>
-            <li><span></span>Post-renovation cleanup</li>
-            <li><span></span>Space organization sessions</li>
-          </ul>
-        </div>
-      </div>
-      <div class="market-block reveal">
-        <div class="market-photo">
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80&auto=format&fit=crop" alt="Commercial cleaning services" />
-          <div class="market-photo-overlay"></div>
-        </div>
-        <div class="market-body">
-          <div class="market-type">Commercial &amp; B2B</div>
-          <h3>Property Managers &amp; Operators</h3>
-          <p>We understand turnaround timelines. Reliable, scalable cleaning for your portfolio.</p>
-          <ul class="market-list">
-            <li><span></span>Short-term rental turnovers</li>
-            <li><span></span>Multi-unit property management</li>
-            <li><span></span>Corporate relocation firms</li>
-            <li><span></span>Small office complexes</li>
-            <li><span></span>Net-30 invoicing available</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTRACTOR STRIP -->
-<div class="contractor-strip reveal">
-  <div class="contractor-strip-left">
-    <div class="section-label">Join the Team</div>
-    <h2>Earn on Your Schedule.<br/>Keep More of What You Make.</h2>
-    <p>Join the Clean Relay network as an independent cleaner in DFW. Set your own hours, choose your jobs, and get paid every Friday.</p>
-    <a href="contractors.html" class="btn-white">Apply to Join →</a>
-  </div>
-  <div class="contractor-strip-right">
-    <img src="20.svg" />
-  </div>
-</div>
 
 <!-- BOOK NOW CTA -->
 <section id="booknow">
@@ -1025,12 +1076,13 @@
         <h4>Work With Us</h4>
         <a href="contractors.html">Become a Cleaner</a>
         <a href="business.html">Business Inquiries</a>
-        <a href="mailto:hello@trycleanrelay.com">Contact Us</a>
+        <a href="mailto:contact@trycleanrelay.com">Contact Us</a>
+        <a href="https://www.facebook.com/share/196Xn8TmAL/?mibextid=wwXIfr" target="_blank" rel="noopener">Follow us on Facebook</a>
       </div>
       <div class="footer-col">
         <h4>Hours</h4>
-        <a href="#">Monday – Saturday: 8:00 AM – 6:00 PM</a>
-        <a href="#">Sunday: 8:00 AM – 6:00 PM</a>
+        <a style="pointer-events:none;cursor:default;">Sun – Sat: 8:00 AM – 6:00 PM</a>
+        
       </div>
     </div>
     <div class="footer-bottom">
@@ -1055,6 +1107,37 @@
     const m = document.getElementById('mobileMenu');
     m.style.display = m.style.display === 'none' ? 'block' : 'none';
   }
+
+  // Countdown timer — bookings go live June 1st 2026
+  function updateCountdown() {
+    const end = new Date('2026-06-01T00:00:00');
+    const now = new Date();
+    const diff = end - now;
+
+    const el = document.getElementById('countdown-timer');
+    const label = document.querySelector('.countdown-label');
+
+    if (!el) return;
+
+    if (diff <= 0) {
+      if (label) label.textContent = 'Bookings are live!';
+      el.textContent = 'Book Now →';
+      el.style.cursor = 'pointer';
+      el.onclick = function() {
+        window.location.href = 'https://book.trycleanrelay.com';
+      };
+      return;
+    }
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const s = Math.floor((diff % (1000*60)) / 1000);
+
+    el.textContent = d + 'd ' + h + 'h ' + m + 'm ' + s + 's';
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
 </script>
 
 </body>
