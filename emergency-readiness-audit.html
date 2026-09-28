@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emergency Readiness Audit | Clean Relay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F5F0E4;
+    --paper-deep: #EDE5D3;
+    --ink: #16262C;
+    --ink-soft: #4A5A5F;
+    --teal: #1D8682;
+    --bright: #3BC0B8;
+    --rule: #D9CFB8;
+    --card: #FFFDF8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, .display {
+    font-family: 'Zilla Slab', serif;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.12;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 28px; }
+
+  .eyebrow {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  /* ---------- header ---------- */
+  header {
+    padding: 26px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .header-inner { display: flex; align-items: center; gap: 10px; }
+  .logo-mark { width: 30px; height: 30px; flex: 0 0 auto; }
+  .wordmark { font-family: 'Zilla Slab', serif; font-weight: 600; font-size: 18px; letter-spacing: 0.01em; }
+  .header-cta {
+    margin-left: auto;
+    background: var(--teal);
+    color: #fff;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 9px 18px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .header-cta:hover { background: var(--bright); }
+  @media (max-width: 420px) {
+    .header-inner { flex-wrap: wrap; row-gap: 10px; }
+    .wordmark { font-size: 15px; }
+    .header-cta { font-size: 12px; padding: 8px 12px; }
+  }
+
+  /* ---------- intro ---------- */
+  .intro { padding: 56px 0 8px; text-align: center; }
+  .intro h1 {
+    font-size: clamp(28px, 5vw, 42px);
+    max-width: 15em;
+    margin: 0 auto 18px;
+  }
+  .intro .sub {
+    max-width: 34em;
+    margin: 0 auto;
+    font-size: 18px;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- quiz ---------- */
+  .quiz-section { padding: 40px 0 100px; }
+  .quiz-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 40px 32px;
+    max-width: 620px;
+    margin: 0 auto;
+    box-shadow: 0 18px 40px -24px rgba(22,38,44,0.35);
+  }
+  .progress-track {
+    height: 6px;
+    background: var(--paper-deep);
+    border-radius: 3px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--teal);
+    border-radius: 3px;
+    transition: width 0.3s ease;
+    width: 10%;
+  }
+  .progress-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    display: block;
+  }
+  .question-text {
+    font-family: 'Zilla Slab', serif;
+    font-size: clamp(21px, 3vw, 26px);
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 32px;
+    min-height: 1.2em;
+  }
+  .answer-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .answer-btn {
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    padding: 22px 10px;
+    border-radius: 5px;
+    border: 2px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+    letter-spacing: 0.01em;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .answer-btn:hover { border-color: var(--teal); }
+  .answer-btn:active { transform: translateY(1px); }
+  .answer-btn.yes:hover, .answer-btn.yes:focus-visible { background: var(--teal); color: #fff; border-color: var(--teal); }
+  .answer-btn.no:hover, .answer-btn.no:focus-visible { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .back-row { text-align: center; }
+  .back-link {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 6px 10px;
+  }
+  .back-link:hover { color: var(--teal); }
+  .back-link.is-hidden { visibility: hidden; }
+
+  /* ---------- results ---------- */
+  .result-score {
+    text-align: center;
+    font-family: 'Zilla Slab', serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .result-tag {
+    text-align: center;
+    font-family: 'Zilla Slab', serif;
+    font-size: clamp(26px, 4vw, 34px);
+    font-weight: 700;
+    margin-bottom: 18px;
+  }
+  .result-tag.ready { color: var(--teal); }
+  .result-tag.shaky { color: #a97a2f; }
+  .result-tag.reactive { color: #8a5a4f; }
+  .result-copy {
+    text-align: center;
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 42em;
+    margin: 0 auto 34px;
+  }
+  .result-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .cta-btn {
+    display: inline-block;
+    background: var(--teal);
+    color: #fff;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 17px 34px;
+    border-radius: 3px;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 1px 0 rgba(22,38,44,0.08);
+    text-align: center;
+    width: 100%;
+    max-width: 360px;
+  }
+  .cta-btn:hover { background: var(--bright); transform: translateY(-1px); }
+  .cta-btn.secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 2px solid var(--rule);
+    box-shadow: none;
+  }
+  .cta-btn.secondary:hover { border-color: var(--teal); background: var(--paper-deep); transform: none; }
+  .retake-row { text-align: center; margin-top: 30px; }
+  .retake-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-decoration: underline;
+  }
+  .retake-link:hover { color: var(--teal); }
+
+  /* ---------- footer ---------- */
+  footer {
+    background: var(--ink); color: #A9B4B2;
+    padding: 44px 0; text-align: center; font-size: 14px;
+  }
+  footer strong { color: #fff; }
+  footer .tm { font-size: 12px; opacity: 0.6; margin-top: 10px; }
+
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--bright); outline-offset: 3px; }
+
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <svg class="logo-mark" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#1D8682"/><path d="M7 12l3.2 3.2L17 8" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="wordmark">Clean Relay</span>
+    <a href="RelayPlaybook.html" class="header-cta">Get the Playbook</a>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <h1>How ready is your business for a contractor no-show?</h1>
+    <p class="sub">10 yes/no questions. 3 minutes. Find out before the next one happens.</p>
+  </div>
+</section>
+
+<section class="quiz-section">
+  <div class="wrap">
+    <div class="quiz-card">
+
+      <div id="quiz-screen">
+        <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+        <span class="progress-label" id="progress-label">Question 1 of 10</span>
+        <p class="question-text" id="question-text"></p>
+        <div class="answer-row">
+          <button type="button" class="answer-btn yes" id="btn-yes">Yes</button>
+          <button type="button" class="answer-btn no" id="btn-no">No</button>
+        </div>
+        <div class="back-row">
+          <a href="#" class="back-link" id="back-link">← Back</a>
+        </div>
+      </div>
+
+      <div id="result-screen" hidden>
+        <p class="result-score" id="result-score"></p>
+        <p class="result-tag" id="result-tag"></p>
+        <p class="result-copy" id="result-copy"></p>
+        <div class="result-buttons" id="result-buttons"></div>
+        <div class="retake-row">
+          <a href="#" class="retake-link" id="retake-link">Retake the audit</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Created by <strong>Jay</strong> · Clean Relay · <strong>trycleanrelay.com</strong></div>
+    <div class="tm">The Relay Method © 2026 Clean Relay LLC</div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var questions = [
+    "Do you have a set time where you stop waiting on a late contractor and move to a backup?",
+    "Do you have at least 2 backups who've actually said yes to short-notice jobs?",
+    "Do you have a client text ready to send within 15 minutes of a no-show?",
+    "Do you confirm with contractors both the day before and the morning of?",
+    "Do you know which jobs can't slip, like same-day turnovers?",
+    "Have you decided in advance what you'll offer an upset client, such as a credit, a re-clean, or a discount?",
+    "Do you track no-shows by contractor?",
+    "Could someone besides you handle a no-show without calling you?",
+    "Do you write down what happened after every incident?",
+    "In the last 90 days, have you gotten through every no-show without losing a client or giving an unplanned refund?"
+  ];
+
+  var PLAYBOOK_URL = "https://stan.store/relaymethod/p/get-the-relay-emergency-response-playbook";
+  var CHECKLIST_URL = "STAN_OPTIN_PLACEHOLDER";
+
+  var answers = new Array(questions.length).fill(null);
+  var current = 0;
+
+  var quizScreen = document.getElementById('quiz-screen');
+  var resultScreen = document.getElementById('result-screen');
+  var progressFill = document.getElementById('progress-fill');
+  var progressLabel = document.getElementById('progress-label');
+  var questionText = document.getElementById('question-text');
+  var btnYes = document.getElementById('btn-yes');
+  var btnNo = document.getElementById('btn-no');
+  var backLink = document.getElementById('back-link');
+  var retakeLink = document.getElementById('retake-link');
+
+  function renderQuestion() {
+    questionText.textContent = questions[current];
+    progressLabel.textContent = "Question " + (current + 1) + " of " + questions.length;
+    progressFill.style.width = (((current + 1) / questions.length) * 100) + "%";
+    backLink.classList.toggle('is-hidden', current === 0);
+  }
+
+  function answer(value) {
+    answers[current] = value;
+    if (current < questions.length - 1) {
+      current++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  btnYes.addEventListener('click', function () { answer(1); });
+  btnNo.addEventListener('click', function () { answer(0); });
+
+  backLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (current > 0) {
+      current--;
+      renderQuestion();
+    }
+  });
+
+  function getScore() {
+    return answers.reduce(function (sum, a) { return sum + (a || 0); }, 0);
+  }
+
+  function showResult() {
+    var score = getScore();
+    quizScreen.hidden = true;
+    resultScreen.hidden = false;
+
+    document.getElementById('result-score').textContent = "Your score: " + score + "/10";
+
+    var tagEl = document.getElementById('result-tag');
+    var copyEl = document.getElementById('result-copy');
+    var buttonsEl = document.getElementById('result-buttons');
+
+    var tier;
+    if (score >= 8) tier = 'ready';
+    else if (score >= 5) tier = 'shaky';
+    else tier = 'reactive';
+
+    var copy = {
+      ready: {
+        tag: "READY",
+        text: "You've got a real system. Most owners don't. The Playbook tightens the gaps you still have."
+      },
+      shaky: {
+        tag: "SHAKY",
+        text: "You're one bad morning away from a lost client. You've got pieces, but not a plan you can run under pressure."
+      },
+      reactive: {
+        tag: "REACTIVE",
+        text: "You're running on adrenaline and luck. That works until the day it doesn't. This is exactly who the Playbook was built for."
+      }
+    };
+
+    tagEl.textContent = copy[tier].tag;
+    tagEl.className = 'result-tag ' + tier;
+    copyEl.textContent = copy[tier].text;
+
+    var playbookBtn = '<a href="' + PLAYBOOK_URL + '" class="cta-btn' + (tier === 'ready' ? ' secondary' : '') + '">Get the Playbook — $99</a>';
+    var checklistBtn = '<a href="' + CHECKLIST_URL + '" class="cta-btn' + (tier === 'ready' ? '' : ' secondary') + '">Get your free No-Show Fix-It Checklist</a>';
+
+    buttonsEl.innerHTML = tier === 'ready'
+      ? checklistBtn + playbookBtn
+      : playbookBtn + checklistBtn;
+
+    resultScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  retakeLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    answers = new Array(questions.length).fill(null);
+    current = 0;
+    resultScreen.hidden = true;
+    quizScreen.hidden = false;
+    renderQuestion();
+    quizScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  renderQuestion();
+})();
+</script>
+
+</body>
+</html>
