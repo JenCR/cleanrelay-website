@@ -249,6 +249,23 @@
 
   [hidden] { display: none !important; }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1946404862718364');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -325,6 +342,32 @@
 
   var answers = new Array(questions.length).fill(null);
   var current = 0;
+
+  var crMemFlags = {};
+  function crGetFlag(key) {
+    try {
+      return sessionStorage.getItem(key) === '1';
+    } catch (err) {
+      return !!crMemFlags[key];
+    }
+  }
+  function crSetFlag(key) {
+    try {
+      sessionStorage.setItem(key, '1');
+    } catch (err) {
+      crMemFlags[key] = true;
+    }
+  }
+  function crFbq() {
+    return typeof fbq === 'function';
+  }
+  function crHandleClick(e, href, trackFn) {
+    if (crFbq()) {
+      e.preventDefault();
+      try { trackFn(); } catch (err) {}
+      setTimeout(function () { window.location.href = href; }, 300);
+    }
+  }
 
   var quizScreen = document.getElementById('quiz-screen');
   var resultScreen = document.getElementById('result-screen');
@@ -410,8 +453,34 @@
       ? checklistBtn + playbookBtn
       : playbookBtn + checklistBtn;
 
+    if (!crGetFlag('cr_quiz_complete')) {
+      crSetFlag('cr_quiz_complete');
+      if (crFbq()) {
+        var bandMap = { ready: 'Ready', shaky: 'Shaky', reactive: 'Reactive' };
+        try { fbq('trackCustom', 'QuizComplete', { score_band: bandMap[tier] }); } catch (err) {}
+      }
+    }
+
     resultScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  document.getElementById('result-buttons').addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    if (href === CHECKLIST_URL) {
+      crHandleClick(e, href, function () {
+        if (!crGetFlag('cr_lead')) {
+          crSetFlag('cr_lead');
+          fbq('track', 'Lead');
+        }
+      });
+    } else if (href === PLAYBOOK_URL) {
+      crHandleClick(e, href, function () {
+        fbq('track', 'InitiateCheckout', { value: 99, currency: 'USD' });
+      });
+    }
+  });
 
   retakeLink.addEventListener('click', function (e) {
     e.preventDefault();

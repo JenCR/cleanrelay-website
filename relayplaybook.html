@@ -377,6 +377,23 @@
     .hero .sub { max-width: 38em; font-size: 20px; }
   }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1946404862718364');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -599,6 +616,44 @@
   } else {
     revealEls.forEach((el) => el.classList.add('is-visible'));
   }
+</script>
+
+<script>
+(function () {
+  function crFbq() {
+    return typeof fbq === 'function';
+  }
+
+  function crHandleClick(e, href, trackFn) {
+    if (crFbq()) {
+      e.preventDefault();
+      try { trackFn(); } catch (err) {}
+      setTimeout(function () { window.location.href = href; }, 300);
+    }
+  }
+
+  function crTrackCheckout() {
+    fbq('track', 'InitiateCheckout', { value: 99, currency: 'USD' });
+  }
+
+  function crTrackAuditClick() {
+    fbq('trackCustom', 'AuditClick');
+  }
+
+  var checkoutLinks = document.querySelectorAll('a[href="https://stan.store/relaymethod/p/get-the-relay-emergency-response-playbook"]');
+  checkoutLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      crHandleClick(e, link.getAttribute('href'), crTrackCheckout);
+    });
+  });
+
+  var auditLinks = document.querySelectorAll('a[href="emergency-readiness-audit.html"]');
+  auditLinks.forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      crHandleClick(e, link.getAttribute('href'), crTrackAuditClick);
+    });
+  });
+})();
 </script>
 
 </body>
