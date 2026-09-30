@@ -294,14 +294,24 @@
   .preview-card p strong { color: var(--ink); }
 
   /* ---------- who it's for ---------- */
-  .who { background: var(--paper-deep); padding: 70px 0; text-align: center; }
+  .who { background: var(--paper-deep); padding: 70px 0; }
+  .who .head { text-align: center; margin-bottom: 44px; }
   .who .eyebrow { display: block; margin: 0 auto 14px; }
-  .who h2 { font-size: clamp(24px, 3vw, 30px); max-width: 20em; margin: 0 auto 26px; }
-  .who-tags { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-  .who-tags span {
-    background: var(--card); border: 1px solid var(--rule);
-    padding: 9px 16px; border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--ink);
+  .who h2 { font-size: clamp(24px, 3vw, 30px); max-width: 26em; margin: 0 auto; }
+  .who-columns { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  @media (max-width: 680px) { .who-columns { grid-template-columns: 1fr; } }
+  .who-col {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 4px;
+    padding: 30px 28px;
   }
+  .who-col h3 { font-size: 18.5px; margin-bottom: 18px; }
+  .who-list { list-style: none; }
+  .who-list li {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 8px 0; font-size: 15px; color: var(--ink-soft);
+  }
+  .who-list.for li::before { content: "✓"; color: var(--teal); font-weight: 700; flex: 0 0 auto; }
+  .who-list.not-for li::before { content: "✕"; color: #8a5a4f; font-weight: 700; flex: 0 0 auto; opacity: 0.75; }
 
   /* ---------- pricing ---------- */
   .pricing { padding: 100px 0; text-align: center; }
@@ -494,16 +504,32 @@
 </section>
 
 <section class="who reveal">
-  <div class="wrap">
-    <span class="eyebrow">Who This Is For</span>
-    <h2>Built for businesses that depend on contractors showing up and can't afford one bad day to become a lost client.</h2>
-    <div class="who-tags">
-      <span>Residential &amp; commercial cleaning</span>
-      <span>STR / Airbnb turnovers</span>
-      <span>Mobile detailing</span>
-      <span>Lawn care &amp; landscaping</span>
-      <span>Handyman &amp; home services</span>
-      <span>Moving &amp; junk removal</span>
+  <div class="wrap-wide">
+    <div class="head">
+      <span class="eyebrow">Who This Is For</span>
+      <h2>Built for owners who can't afford one bad day to become a lost client.</h2>
+    </div>
+    <div class="who-columns">
+      <div class="who-col">
+        <h3>This is for you if:</h3>
+        <ul class="who-list for">
+          <li>You send contractors or team members to jobs, and the work depends on them showing up</li>
+          <li>You've had a no-show or last-minute cancellation, or you know it's only a matter of time</li>
+          <li>Your clients have fixed times: guest check-ins, tenant move-ins, property manager walkthroughs</li>
+          <li>You'd rather have the scripts ready than make them up while the customer is waiting</li>
+          <li>You run a cleaning, STR/Airbnb turnover, mobile detailing, lawn care, handyman, or moving and junk removal business</li>
+        </ul>
+      </div>
+      <div class="who-col">
+        <h3>This is NOT for you if:</h3>
+        <ul class="who-list not-for">
+          <li>You do every job yourself with no contractors or team. There's no one to no-show on you.</li>
+          <li>You want someone to find replacement workers for you. This gives you the system, not the staff.</li>
+          <li>You're looking for software or an app. This is a fill-in-the-blank PDF.</li>
+          <li>You want legal or HR advice on hiring, firing, or contractor agreements. Talk to an attorney for that.</li>
+          <li>You won't spend 30 minutes setting it up before the next emergency. The prep is what makes it work.</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
