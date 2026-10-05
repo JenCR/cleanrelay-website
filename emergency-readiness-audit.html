@@ -228,6 +228,7 @@
     box-shadow: none;
   }
   .cta-btn.secondary:hover { border-color: var(--teal); background: var(--paper-deep); transform: none; }
+  .result-note { font-size: 13.5px; color: var(--ink-soft); text-align: center; }
   .retake-row { text-align: center; margin-top: 30px; }
   .retake-link {
     font-size: 14px;
@@ -338,7 +339,7 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
   ];
 
   var PLAYBOOK_URL = "https://stan.store/relaymethod/p/get-the-relay-emergency-response-playbook";
-  var CHECKLIST_URL = "STAN_OPTIN_PLACEHOLDER";
+  var CHECKLIST_URL = "https://stan.store/relaymethod/p/get-your-free-noshow-fixit-checklist";
 
   var answers = new Array(questions.length).fill(null);
   var current = 0;
@@ -446,12 +447,11 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
     tagEl.className = 'result-tag ' + tier;
     copyEl.textContent = copy[tier].text;
 
-    var playbookBtn = '<a href="' + PLAYBOOK_URL + '" class="cta-btn' + (tier === 'ready' ? ' secondary' : '') + '">Get the Playbook — $99</a>';
-    var checklistBtn = '<a href="' + CHECKLIST_URL + '" class="cta-btn' + (tier === 'ready' ? '' : ' secondary') + '">Get your free No-Show Fix-It Checklist</a>';
+    var checklistBtn = '<a href="' + CHECKLIST_URL + '" class="cta-btn">Send Me the Free Checklist</a>';
+    var checklistNote = '<span class="result-note">Free. Sent straight to your inbox.</span>';
+    var playbookBtn = '<a href="' + PLAYBOOK_URL + '" class="cta-btn secondary">Get the Playbook — $99</a>';
 
-    buttonsEl.innerHTML = tier === 'ready'
-      ? checklistBtn + playbookBtn
-      : playbookBtn + checklistBtn;
+    buttonsEl.innerHTML = checklistBtn + checklistNote + playbookBtn;
 
     if (!crGetFlag('cr_quiz_complete')) {
       crSetFlag('cr_quiz_complete');
