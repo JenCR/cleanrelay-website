@@ -169,6 +169,51 @@
   .back-link:hover { color: var(--teal); }
   .back-link.is-hidden { visibility: hidden; }
 
+  /* ---------- capture ---------- */
+  .capture-heading {
+    font-family: 'Zilla Slab', serif;
+    font-weight: 600;
+    font-size: clamp(22px, 3.4vw, 28px);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .capture-sub {
+    text-align: center;
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+  }
+  .capture-field { margin-bottom: 14px; }
+  .capture-field label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .capture-field input {
+    width: 100%;
+    font-family: 'Karla', sans-serif;
+    font-size: 16px;
+    padding: 13px 15px;
+    border-radius: 5px;
+    border: 2px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    transition: border-color 0.15s ease;
+  }
+  .capture-field input:focus { outline: none; border-color: var(--teal); }
+  .capture-consent {
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin: 2px 0 22px;
+  }
+  .capture-submit { width: 100%; max-width: none; }
+  .capture-submit:disabled { opacity: 0.7; cursor: not-allowed; }
+
   /* ---------- results ---------- */
   .result-score {
     text-align: center;
@@ -309,6 +354,23 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
         </div>
       </div>
 
+      <div id="capture-screen" hidden>
+        <h2 class="capture-heading">Your score is ready.</h2>
+        <p class="capture-sub">Enter your info to see your score.</p>
+        <form id="capture-form">
+          <div class="capture-field">
+            <label for="capture-first-name">First name</label>
+            <input type="text" id="capture-first-name" name="first_name" autocomplete="given-name" required>
+          </div>
+          <div class="capture-field">
+            <label for="capture-email">Email</label>
+            <input type="email" id="capture-email" name="email" autocomplete="email" required>
+          </div>
+          <p class="capture-consent">We'll also email you tips for handling contractor no-shows, plus your free checklist. Unsubscribe anytime.</p>
+          <button type="submit" class="cta-btn capture-submit" id="capture-submit">Show My Score</button>
+        </form>
+      </div>
+
       <div id="result-screen" hidden>
         <p class="result-score" id="result-score"></p>
         <p class="result-tag" id="result-tag"></p>
@@ -347,6 +409,7 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
 
   var PLAYBOOK_URL = "https://stan.store/relaymethod/p/get-the-relay-emergency-response-playbook";
   var CHECKLIST_URL = "https://v2.stan.store/relaymethod/p/get-your-free-noshow-fixit-checklist";
+  var FORMSPREE_URL = "https://formspree.io/f/mvkzarrb";
 
   var answers = new Array(questions.length).fill(null);
   var current = 0;
@@ -378,6 +441,11 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
   }
 
   var quizScreen = document.getElementById('quiz-screen');
+  var captureScreen = document.getElementById('capture-screen');
+  var captureForm = document.getElementById('capture-form');
+  var captureFirstName = document.getElementById('capture-first-name');
+  var captureEmail = document.getElementById('capture-email');
+  var captureSubmitBtn = document.getElementById('capture-submit');
   var resultScreen = document.getElementById('result-screen');
   var progressFill = document.getElementById('progress-fill');
   var progressLabel = document.getElementById('progress-label');
@@ -400,9 +468,59 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
       current++;
       renderQuestion();
     } else {
-      showResult();
+      showCapture();
     }
   }
+
+  function getTier(score) {
+    if (score >= 8) return 'ready';
+    if (score >= 5) return 'shaky';
+    return 'reactive';
+  }
+
+  function showCapture() {
+    quizScreen.hidden = true;
+    captureScreen.hidden = false;
+    captureScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  captureForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var score = getScore();
+    var tier = getTier(score);
+    var bandMap = { ready: 'Ready', shaky: 'Shaky', reactive: 'Reactive' };
+
+    captureSubmitBtn.disabled = true;
+    captureSubmitBtn.textContent = 'Sending...';
+
+    var payload = {
+      first_name: captureFirstName.value.trim(),
+      email: captureEmail.value.trim(),
+      score: score,
+      score_band: bandMap[tier]
+    };
+
+    fetch(FORMSPREE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      if (res.ok && !crGetFlag('cr_lead')) {
+        crSetFlag('cr_lead');
+        if (crFbq()) {
+          try { fbq('track', 'Lead'); } catch (err) {}
+        }
+      }
+    }).catch(function () {
+      // Submission failed (network/Formspree error) — fall through and show results anyway.
+    }).then(function () {
+      captureSubmitBtn.disabled = false;
+      captureSubmitBtn.textContent = 'Show My Score';
+      captureScreen.hidden = true;
+      showResult();
+    });
+  });
 
   btnYes.addEventListener('click', function () { answer(1); });
   btnNo.addEventListener('click', function () { answer(0); });
@@ -430,10 +548,7 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
     var copyEl = document.getElementById('result-copy');
     var buttonsEl = document.getElementById('result-buttons');
 
-    var tier;
-    if (score >= 8) tier = 'ready';
-    else if (score >= 5) tier = 'shaky';
-    else tier = 'reactive';
+    var tier = getTier(score);
 
     var copy = {
       ready: {
@@ -477,9 +592,9 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
     var href = link.getAttribute('href');
     if (href === CHECKLIST_URL) {
       crHandleClick(e, href, function () {
-        if (!crGetFlag('cr_lead')) {
-          crSetFlag('cr_lead');
-          fbq('track', 'Lead');
+        if (!crGetFlag('cr_checklist_click')) {
+          crSetFlag('cr_checklist_click');
+          fbq('trackCustom', 'ChecklistClick');
         }
       });
     } else if (href === PLAYBOOK_URL) {
