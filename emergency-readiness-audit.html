@@ -229,6 +229,14 @@
   }
   .cta-btn.secondary:hover { border-color: var(--teal); background: var(--paper-deep); transform: none; }
   .result-note { font-size: 13.5px; color: var(--ink-soft); text-align: center; }
+  .playbook-link {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    text-align: center;
+  }
+  .playbook-link:hover { color: var(--teal); }
   .retake-row { text-align: center; margin-top: 30px; }
   .retake-link {
     font-size: 14px;
@@ -430,15 +438,15 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
     var copy = {
       ready: {
         tag: "READY",
-        text: "You've got a real system. Most owners don't. The Playbook tightens the gaps you still have."
+        text: "You're ahead of most owners. The free No-Show Fix-It Checklist is your one-page backup for the day your system gets tested. Print it and keep it by your desk."
       },
       shaky: {
         tag: "SHAKY",
-        text: "You're one bad morning away from a lost client. You've got pieces, but not a plan you can run under pressure."
+        text: "You've got pieces of a plan, but the gaps show up at the worst possible time. The free No-Show Fix-It Checklist closes the biggest ones by walking you through the first 30 minutes, step by step."
       },
       reactive: {
         tag: "REACTIVE",
-        text: "You're running on adrenaline and luck. That works until the day it doesn't. This is exactly who the Playbook was built for."
+        text: "You're running on adrenaline and luck. That works until the day it doesn't. Start with the free No-Show Fix-It Checklist. It walks you through the first 30 minutes when someone doesn't show: who to call, what to tell your client, and when to send backup."
       }
     };
 
@@ -448,9 +456,9 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
 
     var checklistBtn = '<a href="' + CHECKLIST_URL + '" class="cta-btn">Send Me the Free Checklist</a>';
     var checklistNote = '<span class="result-note">Free. Sent straight to your inbox.</span>';
-    var playbookBtn = '<a href="' + PLAYBOOK_URL + '" class="cta-btn secondary">Get the Playbook — $99</a>';
+    var playbookLink = '<a href="' + PLAYBOOK_URL + '" class="playbook-link">Want the full system? See the Playbook ($99)</a>';
 
-    buttonsEl.innerHTML = checklistBtn + checklistNote + playbookBtn;
+    buttonsEl.innerHTML = checklistBtn + checklistNote + playbookLink;
 
     if (!crGetFlag('cr_quiz_complete')) {
       crSetFlag('cr_quiz_complete');
