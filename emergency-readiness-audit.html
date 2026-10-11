@@ -463,6 +463,12 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
   }
 
   function answer(value) {
+    if (current === 0 && !crGetFlag('cr_quiz_start')) {
+      crSetFlag('cr_quiz_start');
+      if (crFbq()) {
+        try { fbq('trackCustom', 'QuizStart'); } catch (err) {}
+      }
+    }
     answers[current] = value;
     if (current < questions.length - 1) {
       current++;
@@ -481,6 +487,12 @@ src="https://www.facebook.com/tr?id=1946404862718364&ev=PageView&noscript=1"
   function showCapture() {
     quizScreen.hidden = true;
     captureScreen.hidden = false;
+    if (!crGetFlag('cr_form_view')) {
+      crSetFlag('cr_form_view');
+      if (crFbq()) {
+        try { fbq('trackCustom', 'FormView'); } catch (err) {}
+      }
+    }
     captureScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
